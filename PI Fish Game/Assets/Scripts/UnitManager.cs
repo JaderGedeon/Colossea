@@ -12,6 +12,17 @@ public class UnitManager : MonoBehaviour
     public int unitLimitCap;
     public float distanceBetweenUnits;
 
+
+    // Moviment
+
+    public Camera cam = Camera.main;
+    public RaycastHit hit;
+    public Ray ray;
+
+    public List<PlayerMoviment> movimentList;
+
+    // =======
+
     private void Start()
     {
         unitFormation = new Formation(unitCap: unitLimitCap, distance: distanceBetweenUnits);
@@ -24,10 +35,24 @@ public class UnitManager : MonoBehaviour
             UnitSpawn();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            unitFormation.PrintSaPoha();
+        if (UnitsNeedToMove()) { 
+            
+
+
         }
+    }
+
+    public bool UnitsNeedToMove() {
+
+        ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        return (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground")));
+    }
+
+    public void moveUnits() {
+
+
+    
     }
 
 
@@ -42,6 +67,8 @@ public class UnitManager : MonoBehaviour
 
             Unit newUnit = Instantiate(units[0], vectorPosition, Quaternion.identity, unitsContainer);
             newUnit.GetComponent<PlayerMoviment>().positionInFormation = vectorPosition;
+
+            movimentList.Add(newUnit.GetComponent<PlayerMoviment>());
 
             unitFormation.AddUnit();
 

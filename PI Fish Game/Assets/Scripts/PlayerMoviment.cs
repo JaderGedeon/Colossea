@@ -21,16 +21,18 @@ public class PlayerMoviment : MonoBehaviour
         cam = Camera.main;
     }
 
-    void Update()
-    {
-        Rotation();
+    public void Move() {
 
+        var lastPos = transform.position;
+        transform.position = 
+    
     }
-    void Rotation() {
+
+    public void Rotation() {
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground")))
         {
             Vector3 playerToMouse = hit.point - transform.position + positionInFormation;
             playerToMouse.y = 0f;

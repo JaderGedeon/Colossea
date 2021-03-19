@@ -438,8 +438,10 @@ MonoBehaviour:
   - {fileID: 668468355644751324, guid: be7fc586a137c2348b93b0f42f083c91, type: 3}
   unitsContainer: {fileID: 860202061}
   unitFormation: {fileID: 0}
-  unitLimitCap: 9
+  unitLimitCap: 100
   distanceBetweenUnits: 5
+  cam: {fileID: 0}
+  movimentList: []
 --- !u!4 &1809267375
 Transform:
   m_ObjectHideFlags: 0
