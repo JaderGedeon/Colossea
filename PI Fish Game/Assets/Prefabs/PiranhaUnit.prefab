@@ -130,8 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   rotationSpeed: 0
-  cam: {fileID: 0}
   positionInFormation: {x: 0, y: 0, z: 0}
+  cachedPos: {x: 0, y: 0, z: 0}
+  playerRigidBody: {fileID: 0}
 --- !u!114 &668468355644751324
 MonoBehaviour:
   m_ObjectHideFlags: 0

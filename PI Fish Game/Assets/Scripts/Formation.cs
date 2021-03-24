@@ -6,11 +6,11 @@ public class Formation : MonoBehaviour
 {
 
     private int unitCap;
-    private int totalUnits = 1;
+    private int totalUnits = 0;
     private int numDiag;
     private float distance;
     private List<CoordinatePoint> coordinatesList = new List<CoordinatePoint>();
-    private CoordinatePoint centerPoint = new CoordinatePoint(0, 0);
+    public CoordinatePoint centerPoint = new CoordinatePoint(0, 0);
     private int[] numInSideOfSquare = { 1, 1 };
 
     public int GetTotalUnits { get => totalUnits; }
@@ -25,15 +25,6 @@ public class Formation : MonoBehaviour
 
     }
 
-    public void PrintSaPoha() {
-
-        foreach (var item in coordinatesList)
-        {
-            Debug.Log("("+item.GetXPosition+", "+item.GetYPosition+")");
-        }
-    
-    }
-
     public CoordinatePoint GetLastUnitCoordinate()
     {
 
@@ -46,6 +37,11 @@ public class Formation : MonoBehaviour
 
         if (totalUnits < unitCap)
         {
+            if (totalUnits == 0) {
+                totalUnits++;
+                return;
+            }
+
             // Adiciona unidade na diagonal
             if (totalUnits == Mathf.Pow(numDiag, 2))
             {
