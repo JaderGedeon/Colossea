@@ -7,10 +7,10 @@ public class UnitManager : MonoBehaviour
 
     public GameObject unitToSpawn; // Prefab of unit
     public Transform unitsContainer; // Father in hierarchy of units
-    public Formation unitFormation; // Class Formation
-
     public int unitLimitCap; // Limit of units to spawn
     public float distanceBetweenUnits; // Distance between units
+
+    private Formation unitFormation; // Class Formation
 
     // Moviment Variables
 
@@ -20,11 +20,9 @@ public class UnitManager : MonoBehaviour
     private RaycastHit hit; // Raycast
     private Ray ray; // Ray
 
-    //
-
     private void Start()
     {
-        unitFormation = new Formation(unitCap: unitLimitCap, distance: distanceBetweenUnits);
+        unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
     }
 
@@ -56,9 +54,11 @@ public class UnitManager : MonoBehaviour
 
     public void MoveUnits() {
 
-        Vector3 posHit = new Vector3(hit.point.x - unitFormation.centerPoint.GetXPosition,
+        float[] formationCenterPoint = unitFormation.CenterPoint;
+
+        Vector3 posHit = new Vector3(hit.point.x - formationCenterPoint[0],
                                     0,
-                                    hit.point.z - unitFormation.centerPoint.GetYPosition);
+                                    hit.point.z - formationCenterPoint[1]);
 
         for (int i = 0, end = unitMovimentList.Count; i < end; i++)
         {
@@ -73,20 +73,23 @@ public class UnitManager : MonoBehaviour
         {
             unitFormation.AddUnit();
 
-            Vector3 vectorPosition = new Vector3(
-                        unitFormation.GetLastUnitCoordinate().GetXPosition,
-                        transform.position.y,
-                        unitFormation.GetLastUnitCoordinate().GetYPosition);
+            var lastUnitCoordinate = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
+
+            Vector3 vectorPosition = new Vector3(lastUnitCoordinate[0],
+                                                transform.position.y,
+                                                lastUnitCoordinate[1]);
 
             GameObject newUnit = Instantiate(unitToSpawn, vectorPosition, Quaternion.identity, unitsContainer);
 
             PlayerMoviment newUnitMoviment = newUnit.GetComponent<PlayerMoviment>();
 
-            newUnitMoviment.positionInFormation = vectorPosition;
+            newUnitMoviment.PositionInFormation = vectorPosition;
 
-            newUnit.gameObject.transform.position = new Vector3(hit.point.x  + vectorPosition.x - unitFormation.centerPoint.GetXPosition,
+            var formationCenterPoint = unitFormation.CenterPoint;
+
+            newUnit.gameObject.transform.position = new Vector3(hit.point.x  + vectorPosition.x - formationCenterPoint[0],
                                                                 vectorPosition.y,
-                                                                hit.point.z + vectorPosition.z - unitFormation.centerPoint.GetYPosition);
+                                                                hit.point.z + vectorPosition.z - formationCenterPoint[1]);
 
             newUnitMoviment.Start();
 

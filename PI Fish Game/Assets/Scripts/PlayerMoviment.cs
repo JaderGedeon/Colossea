@@ -6,18 +6,16 @@ public class PlayerMoviment : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float rotationSpeed;
 
-    public Vector3 positionInFormation = new Vector3(0,0,0);
+    private Vector3 positionInFormation = new Vector3(0, 0, 0);
+    private Vector3 cachedPos;
+    private Rigidbody playerRigidBody;
 
-    public Vector3 cachedPos;
-
-    public Rigidbody playerRigidBody;
+    public Vector3 PositionInFormation { set => positionInFormation = value; }
 
     public void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
-
         cachedPos = transform.position;
     }
 

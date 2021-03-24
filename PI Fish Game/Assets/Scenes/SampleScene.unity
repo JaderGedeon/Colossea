@@ -437,7 +437,6 @@ MonoBehaviour:
   unitToSpawn: {fileID: 355685949115953486, guid: be7fc586a137c2348b93b0f42f083c91,
     type: 3}
   unitsContainer: {fileID: 860202061}
-  unitFormation: {fileID: 0}
   unitLimitCap: 100
   distanceBetweenUnits: 5
 --- !u!4 &1809267375
