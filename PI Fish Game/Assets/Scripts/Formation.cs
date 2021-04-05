@@ -5,108 +5,81 @@ using UnityEngine;
 public class Formation : MonoBehaviour
 {
 
-    private int unitCap;
-    private int totalUnits = 1;
-    private int numDiag;
-    private float distance;
+    private int totalUnits = 0;
+    private float distanceBetweenUnits;
     private List<CoordinatePoint> coordinatesList = new List<CoordinatePoint>();
-    private CoordinatePoint centerPoint = new CoordinatePoint(0, 0);
+    private float[] centerPoint = new float[] { 0, 0 };
+
+    private int numDiag;
     private int[] numInSideOfSquare = { 1, 1 };
 
-    public int GetTotalUnits { get => totalUnits; }
-
-    public Formation(int unitCap, float distance)
+    public Formation(float distance)
     {
         coordinatesList.Add(new CoordinatePoint(0, 0));
         numDiag = 1;
 
-        this.unitCap = unitCap;
-        this.distance = distance;
-
-    }
-
-    public void PrintSaPoha() {
-
-        foreach (var item in coordinatesList)
-        {
-            Debug.Log("("+item.GetXPosition+", "+item.GetYPosition+")");
-        }
-    
-    }
-
-    public CoordinatePoint GetLastUnitCoordinate()
-    {
-
-        return coordinatesList[coordinatesList.Count - 1];
-
+        distanceBetweenUnits = distance;
     }
 
     public void AddUnit()
     {
-
-        if (totalUnits < unitCap)
+        if (totalUnits == 0)
         {
-            // Adiciona unidade na diagonal
-            if (totalUnits == Mathf.Pow(numDiag, 2))
-            {
-                numDiag++;
-
-                coordinatesList.Add(new CoordinatePoint((centerPoint.GetXPosition * 2) + distance,
-                    (centerPoint.GetYPosition * 2) + distance));
-
-                centerPoint.SetXPosition = (numDiag - 1) * distance / 2;
-                centerPoint.SetYPosition = (numDiag - 1) * distance / 2;
-
-                numInSideOfSquare[0] = 1;
-                numInSideOfSquare[1] = 1;
-            }
-            else
-            {
-                if ((totalUnits + 1) % 2 == 0)
-                {
-                    // Adiciona unidade para cima
-                    coordinatesList.Add(new CoordinatePoint(((centerPoint.GetXPosition * 2)) - distance * numInSideOfSquare[0],
-                        (centerPoint.GetYPosition * 2)));
-
-                    numInSideOfSquare[0] += 1;
-
-                }
-                else
-                {
-                    // Adiciona unidade para esquerda
-                    coordinatesList.Add(new CoordinatePoint((centerPoint.GetXPosition * 2),
-                        ((centerPoint.GetYPosition * 2)) - distance * numInSideOfSquare[1]));
-
-                    numInSideOfSquare[1] += 1;
-                }
-            }
             totalUnits++;
+            return;
+        }
+
+        // Adiciona unidade na diagonal
+        if (totalUnits == Mathf.Pow(numDiag, 2))
+        {
+            numDiag++;
+
+            coordinatesList.Add(new CoordinatePoint(centerPoint[0] * 2 + distanceBetweenUnits,
+                                                    centerPoint[1] * 2 + distanceBetweenUnits));
+
+            centerPoint = new float[] { (numDiag - 1) * distanceBetweenUnits / 2,
+                                        (numDiag - 1) * distanceBetweenUnits / 2 };
+
+            numInSideOfSquare = new int[] { 1, 1 };
+
         }
         else
         {
-            Debug.Log("Número máximo de unidades alcançadas");
+            if ((totalUnits + 1) % 2 == 0)
+            {
+                // Adiciona unidade para cima
+                coordinatesList.Add(new CoordinatePoint(centerPoint[0] * 2 - distanceBetweenUnits * numInSideOfSquare[0],
+                                                        centerPoint[1] * 2));
+
+                numInSideOfSquare[0] += 1;
+
+            }
+            else
+            {
+                // Adiciona unidade para esquerda
+                coordinatesList.Add(new CoordinatePoint(centerPoint[0] * 2,
+                                                        centerPoint[1] * 2 - distanceBetweenUnits * numInSideOfSquare[1]));
+
+                numInSideOfSquare[1] += 1;
+            }
         }
+        totalUnits++;
     }
+    public int GetTotalUnits => totalUnits;
+    public float[] CenterPoint => centerPoint;
+    public CoordinatePoint GetLastUnitCoordinate => coordinatesList[coordinatesList.Count - 1];
 }
 
 public class CoordinatePoint
 {
+    private float xPosition, zPosition;
 
-    private float xPosition, yPosition;
-
-    public CoordinatePoint(float xPosition, float yPosition)
+    public CoordinatePoint(float xPosition, float zPosition)
     {
-
         this.xPosition = xPosition;
-        this.yPosition = yPosition;
-
+        this.zPosition = zPosition;
     }
-
-    public float GetXPosition { get => xPosition; }
-    public float GetYPosition { get => yPosition; }
-
-    public float SetXPosition { set => xPosition = value; }
-    public float SetYPosition { set => yPosition = value; }
+    public float[] GetXandZPosition => new float[] { xPosition, zPosition };
 }
 
 
