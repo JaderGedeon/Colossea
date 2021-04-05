@@ -6,40 +6,39 @@ public class PlayerMoviment : MonoBehaviour
 {
 
     public float moveSpeed;
-    public float rotationSpeed;
-    Vector3 movement;
 
-    public Camera cam;
-    RaycastHit hit;
-    Rigidbody playerRigidbody;
+    private Vector3 positionInFormation = new Vector3(0, 0, 0);
+    private Vector3 cachedPos;
+    private Rigidbody playerRigidBody;
 
-    public Vector3 positionInFormation = new Vector3(0,0,0);
+    public Vector3 PositionInFormation { set => positionInFormation = value; }
 
-    void Start()
+    public void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
-        cam = Camera.main;
+        playerRigidBody = GetComponent<Rigidbody>();
+        cachedPos = transform.position;
     }
 
-    void Update()
-    {
-        Rotation();
+    public void Move(Vector3 hit) {
 
-    }
-    void Rotation() {
+        var lastPos = transform.position;
 
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Vector3 playerToMouse = new Vector3(hit.x - lastPos.x + positionInFormation.x,
+                                            0,
+                                            hit.z - lastPos.z + positionInFormation.z);
 
-        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Ground")))
+        if (playerToMouse != Vector3.zero)
         {
-            Vector3 playerToMouse = hit.point - transform.position + positionInFormation;
-            playerToMouse.y = 0f;
-
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            playerRigidbody.MoveRotation(newRotation);
 
-            //playerRigidbody.AddForce(playerToMouse * moveSpeed);
-            playerRigidbody.MovePosition((Vector3)transform.position + (playerToMouse * moveSpeed * Time.deltaTime));
+            cachedPos.x += playerToMouse.x * (moveSpeed * Time.deltaTime);
+            cachedPos.z += playerToMouse.z * (moveSpeed * Time.deltaTime);
+
+            Vector3 tempVect = new Vector3(cachedPos.x, transform.position.y, cachedPos.z);
+
+            playerRigidBody.MovePosition(tempVect);
+            playerRigidBody.MoveRotation(newRotation);
+
         }
     }
 }
