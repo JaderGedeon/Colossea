@@ -85,6 +85,7 @@ public class Inimigo : MonoBehaviour
 
     public void Morrer()
     {
+        FindObjectOfType<UnitManager>().UnitSpawn();
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject);
     }

@@ -10,6 +10,8 @@ public class UnitManager : MonoBehaviour
     public int unitLimitCap; // Limit of units to spawn
     public float distanceBetweenUnits; // Distance between units
 
+    public GameObject essa;
+
     private Formation unitFormation; // Class Formation
 
     // Moviment Variables
@@ -31,6 +33,12 @@ public class UnitManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             UnitSpawn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveUnit(essa);
+            Destroy(essa);
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -69,7 +77,7 @@ public class UnitManager : MonoBehaviour
 
     public void UnitSpawn() {
 
-        if (unitLimitCap > unitFormation.GetTotalUnits)
+        if (unitLimitCap > unitFormation.TotalUnits)
         {
             unitFormation.AddUnit();
 
@@ -84,6 +92,7 @@ public class UnitManager : MonoBehaviour
             PlayerMoviment newUnitMoviment = newUnit.GetComponent<PlayerMoviment>();
 
             newUnitMoviment.PositionInFormation = vectorPosition;
+            //newUnitMoviment.
 
             var formationCenterPoint = unitFormation.CenterPoint;
 
@@ -97,6 +106,24 @@ public class UnitManager : MonoBehaviour
         }
         else {
             Debug.Log("Número máximo de unidades alcançadas");
+        }
+    }
+
+    public void RemoveUnit(GameObject unitToRemove) {
+
+        PlayerMoviment removedPlayerMoviment = unitToRemove.GetComponent<PlayerMoviment>();
+        for (int i = 0; i < unitMovimentList.Count; i++)
+        {
+            if (unitMovimentList[i] == removedPlayerMoviment)
+            {
+                unitMovimentList[unitMovimentList.Count - 1].PositionInFormation = unitMovimentList[i].PositionInFormation;
+                unitMovimentList.Insert(i, unitMovimentList[unitMovimentList.Count - 1]);
+
+                unitMovimentList.RemoveAt(unitMovimentList.Count - 1);
+                unitMovimentList.RemoveAt(i+1);
+                unitFormation.RemoveUnit();
+                break;
+            }
         }
     }
 }
