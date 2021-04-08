@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
 
     public void Morrer()
     {
+        FindObjectOfType<UnitManager>().RemoveUnit(gameObject);
         Destroy(gameObject);
     }
 }

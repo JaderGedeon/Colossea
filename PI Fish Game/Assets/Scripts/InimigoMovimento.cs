@@ -16,7 +16,6 @@ public class InimigoMovimento : MonoBehaviour
     {
         if (Jogador_Cacado!= null)
         {
-            Debug.Log("Oii");
             Perseguir(Jogador_Cacado.transform.rotation);
             Mover(Jogador_Cacado.transform.position);
         }
@@ -26,7 +25,6 @@ public class InimigoMovimento : MonoBehaviour
     private void Update()
     {
         Visao_Inimigo();
-        Debug.Log("EAE");
     }
 
     public void Perseguir(Quaternion jogador_rotacao) 

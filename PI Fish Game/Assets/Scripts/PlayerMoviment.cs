@@ -8,10 +8,12 @@ public class PlayerMoviment : MonoBehaviour
     public float moveSpeed;
 
     private Vector3 positionInFormation = new Vector3(0, 0, 0);
+    private int unitID;
     private Vector3 cachedPos;
     private Rigidbody playerRigidBody;
 
-    public Vector3 PositionInFormation { set => positionInFormation = value; }
+    public Vector3 PositionInFormation { get => positionInFormation; set => positionInFormation = value; }
+    public int UnitID { get => unitID; set => unitID = value; }
 
     public void Start()
     {
