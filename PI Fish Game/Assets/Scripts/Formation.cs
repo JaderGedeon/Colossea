@@ -10,19 +10,18 @@ public class Formation : MonoBehaviour
     private List<CoordinatePoint> coordinatesList = new List<CoordinatePoint>();
     private float[] centerPoint = new float[] { 0, 0 };
 
-    private int numDiag;
+    private int numDiag = 1;
     private int[] numInSideOfSquare = { 1, 1 };
 
     public Formation(float distance)
     {
         coordinatesList.Add(new CoordinatePoint(0, 0));
-        numDiag = 1;
-
         distanceBetweenUnits = distance;
     }
 
     public void AddUnit()
     {
+
         if (totalUnits == 0)
         {
             totalUnits++;
@@ -41,7 +40,6 @@ public class Formation : MonoBehaviour
                                         (numDiag - 1) * distanceBetweenUnits / 2 };
 
             numInSideOfSquare = new int[] { 1, 1 };
-
         }
         else
         {
@@ -52,7 +50,6 @@ public class Formation : MonoBehaviour
                                                         centerPoint[1] * 2));
 
                 numInSideOfSquare[0] += 1;
-
             }
             else
             {
@@ -65,9 +62,34 @@ public class Formation : MonoBehaviour
         }
         totalUnits++;
     }
-    public int GetTotalUnits => totalUnits;
+
+    public void RemoveUnit() {
+
+        if (numInSideOfSquare[0] == 1 && numInSideOfSquare[1] == 1)
+        {
+
+            numDiag--;
+
+            centerPoint = new float[] { (numDiag - 1) * distanceBetweenUnits / 2,
+                                        (numDiag - 1) * distanceBetweenUnits / 2 };
+
+            numInSideOfSquare = new int[] { numDiag, numDiag };
+
+        }
+        else if ((totalUnits + 1) % 2 == 1)
+        {
+            numInSideOfSquare[0]--;
+        }
+        else {
+            numInSideOfSquare[1]--;
+        }
+
+        totalUnits--;
+    }
+
     public float[] CenterPoint => centerPoint;
     public CoordinatePoint GetLastUnitCoordinate => coordinatesList[coordinatesList.Count - 1];
+    public int TotalUnits { get => totalUnits; set => totalUnits = value; }
 }
 
 public class CoordinatePoint
