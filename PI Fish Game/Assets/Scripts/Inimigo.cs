@@ -31,19 +31,17 @@ public class Inimigo : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
 
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
-        if (other.gameObject.tag.Equals("Unit") && other.gameObject.GetComponent<Player>().posso_dar_dano)
+        if (other.gameObject.tag.Equals("Unit") && posso_dar_dano)
         {
-
-            StartCoroutine(other.gameObject.GetComponent<Player>().Resetar_Posso_Dar_Dano());
+            Debug.Log(posso_dar_dano);
 
             if (jogador_cacado == null || jogador_cacado == other.gameObject)
             {
                 jogador_cacado = other.gameObject;
-                //pedimos para executar uma funcao que simula um certo tipo de cadencia e que depois ira direcionar para outra funcao que dara o dano
                 DarDano(other);
             }            
         }        
@@ -56,7 +54,11 @@ public class Inimigo : MonoBehaviour
         var player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            vida.Dano(player.dano);
+            if (posso_dar_dano)
+            {
+                player.vida.Dano(dano);
+                StartCoroutine(Resetar_Posso_Dar_Dano());
+            }
             if (player.vida.totalVida-player.dano <= 0 || player == null)
             {
                 jogador_cacado = null;
@@ -68,7 +70,7 @@ public class Inimigo : MonoBehaviour
     public void Mudar_Cor() 
     {
         mesh.material.color = new Color(50, feedBack_Cor.g, feedBack_Cor.b);
-        Invoke(nameof(Voltar_Cor), 1);
+        Invoke(nameof(Voltar_Cor), 0.5f);
     }
 
     public void Voltar_Cor() 
@@ -79,7 +81,7 @@ public class Inimigo : MonoBehaviour
     public IEnumerator Resetar_Posso_Dar_Dano()
     {
         posso_dar_dano = false;
-        yield return cadencia;
+        yield return new WaitForSeconds(cadencia);
         posso_dar_dano = true;
     }
 
