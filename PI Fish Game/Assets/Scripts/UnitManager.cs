@@ -110,7 +110,7 @@ public class UnitManager : MonoBehaviour
     public void RemoveUnit(GameObject unitToRemove)
     {
 
-        PlayerMoviment removedPlayerMoviment = unitToRemove.GetComponent<PlayerMoviment>();
+        NavMeshTest removedPlayerMoviment = unitToRemove.GetComponent<NavMeshTest>();
 
         if (unitFormation.TotalUnits == 1)
         {
