@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 668468355644751324}
   - component: {fileID: -4255413302867846425}
   - component: {fileID: -3114833641827200451}
+  - component: {fileID: -1781662587725610824}
   m_Layer: 10
   m_Name: PiranhaUnit
   m_TagString: Unit
@@ -171,3 +172,25 @@ MonoBehaviour:
   dano: 1
   cadencia: 1
   posso_dar_dano: 1
+--- !u!195 &-1781662587725610824
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355685949115953486}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.5046556
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.50143
+  m_BaseOffset: 1.250715
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
