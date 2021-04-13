@@ -6,20 +6,21 @@ using UnityEngine.AI;
 public class NavMeshTest : MonoBehaviour
 {
 
-    public Camera cam;
+    private Camera cam;
+    private NavMeshAgent agent;
 
-    public NavMeshAgent agent;
+    private Vector3 positionInFormation = new Vector3(0, 0, 0);
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 PositionInFormation { get => positionInFormation; set => positionInFormation = value; }
+
+    public void Start()
     {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        cam = Camera.main;
+        agent = gameObject.GetComponent<NavMeshAgent>();
+    }
 
-            if(Physics.Raycast(ray, out hit)) 
-            {
-                agent.SetDestination(hit.point);
-            }
-        
+    public void Move(Vector3 hit)
+    {
+        agent.SetDestination(hit + positionInFormation);
     }
 }

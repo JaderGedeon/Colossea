@@ -121,7 +121,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 834e9c259aba9aa41ac8ed315fd2cfc4, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389f2128f9e04c4459d89941c468a0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitToSpawn: {fileID: 355685949115953486, guid: be7fc586a137c2348b93b0f42f083c91,
+  unitToSpawn: {fileID: 656444099132255663, guid: fdd3b175b1018a44dafa05f95574bf68,
     type: 3}
   unitsContainer: {fileID: 860202061}
   unitLimitCap: 100

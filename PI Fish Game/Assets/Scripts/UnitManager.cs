@@ -15,7 +15,7 @@ public class UnitManager : MonoBehaviour
 
     // Moviment Variables
 
-    private List<PlayerMoviment> unitMovimentList = new List<PlayerMoviment>(); // List of PlayerMoviment class in each unit
+    private List<NavMeshTest> unitMovimentList = new List<NavMeshTest>(); // List of PlayerMoviment class in each unit
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
@@ -85,17 +85,18 @@ public class UnitManager : MonoBehaviour
 
             GameObject newUnit = Instantiate(unitToSpawn, vectorPosition, Quaternion.identity, unitsContainer);
 
-            PlayerMoviment newUnitMoviment = newUnit.GetComponent<PlayerMoviment>();
+            NavMeshTest newUnitMoviment = newUnit.GetComponent<NavMeshTest>();
 
             newUnitMoviment.PositionInFormation = vectorPosition;
             //newUnitMoviment.
 
             var formationCenterPoint = unitFormation.CenterPoint;
-
+            
+            /*
             newUnit.gameObject.transform.position = new Vector3(hit.point.x + vectorPosition.x - formationCenterPoint[0],
                                                                 vectorPosition.y,
                                                                 hit.point.z + vectorPosition.z - formationCenterPoint[1]);
-
+            */
             newUnitMoviment.Start();
 
             unitMovimentList.Add(newUnitMoviment);

@@ -21,7 +21,8 @@ public class PlayerMoviment : MonoBehaviour
         cachedPos = transform.position;
     }
 
-    public void Move(Vector3 hit) {
+    public void Move(Vector3 hit)
+    {
 
         var lastPos = transform.position;
 
