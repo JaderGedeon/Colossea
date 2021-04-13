@@ -29,12 +29,11 @@ public class Player : MonoBehaviour
         vida.NofimDaVida = Morrer;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
-        if (other.gameObject.tag.Equals("Inimigo") && other.gameObject.GetComponent<Inimigo>().posso_dar_dano)
-        {
-            StartCoroutine(other.gameObject.GetComponent<Inimigo>().Resetar_Posso_Dar_Dano());
+        if (other.gameObject.tag.Equals("Inimigo") && posso_dar_dano)
+        {            
             //pedimos para executar uma funcao que simula um certo tipo de cadencia e que depois ira direcionar para outra funcao que dara o dano
             DarDano(other);            
         }
@@ -48,14 +47,18 @@ public class Player : MonoBehaviour
         Debug.Log("Essa eh a minha vida"+inimigo.vida.totalVida);
         if (inimigo != null)
         {
-            vida.Dano(inimigo.dano);
+            if (posso_dar_dano)
+            {
+                inimigo.vida.Dano(dano);
+                StartCoroutine(Resetar_Posso_Dar_Dano());
+            }            
         }
     }
 
     public void Mudar_Cor()
     {
         mesh.material.color = new Color(50, feedBack_Cor.g, feedBack_Cor.b);
-        Invoke(nameof(Voltar_Cor), 1);
+        Invoke(nameof(Voltar_Cor), 0.5f);
     }
 
     public void Voltar_Cor()
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour
     public IEnumerator Resetar_Posso_Dar_Dano() 
     {
         posso_dar_dano = false;
-        yield return cadencia;
+        yield return new WaitForSeconds(cadencia);
         posso_dar_dano = true;
     }
 
