@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
@@ -10,13 +11,11 @@ public class UnitManager : MonoBehaviour
     public int unitLimitCap; // Limit of units to spawn
     public float distanceBetweenUnits; // Distance between units
 
-    public GameObject essa;
-
     private Formation unitFormation; // Class Formation
 
     // Moviment Variables
 
-    private List<PlayerMoviment> unitMovimentList = new List<PlayerMoviment>(); // List of PlayerMoviment class in each unit
+    private List<NavMeshTest> unitMovimentList = new List<NavMeshTest>(); // List of PlayerMoviment class in each unit
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
@@ -35,12 +34,6 @@ public class UnitManager : MonoBehaviour
             UnitSpawn();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RemoveUnit(essa);
-            Destroy(essa);
-        }
-
         if (Input.GetKeyDown(KeyCode.F))
         {
             for (int i = 0; i < 100; i++)
@@ -53,14 +46,16 @@ public class UnitManager : MonoBehaviour
             MoveUnits();
     }
 
-    public bool UnitsNeedToMove() {
+    public bool UnitsNeedToMove()
+    {
 
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
         return Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
     }
 
-    public void MoveUnits() {
+    public void MoveUnits()
+    {
 
         float[] formationCenterPoint = unitFormation.CenterPoint;
 
@@ -72,10 +67,11 @@ public class UnitManager : MonoBehaviour
         {
             unitMovimentList[i].Move(posHit);
         }
- 
+
     }
 
-    public void UnitSpawn() {
+    public void UnitSpawn()
+    {
 
         if (unitLimitCap > unitFormation.TotalUnits)
         {
@@ -89,38 +85,50 @@ public class UnitManager : MonoBehaviour
 
             GameObject newUnit = Instantiate(unitToSpawn, vectorPosition, Quaternion.identity, unitsContainer);
 
-            PlayerMoviment newUnitMoviment = newUnit.GetComponent<PlayerMoviment>();
+            NavMeshTest newUnitMoviment = newUnit.GetComponent<NavMeshTest>();
 
             newUnitMoviment.PositionInFormation = vectorPosition;
             //newUnitMoviment.
 
             var formationCenterPoint = unitFormation.CenterPoint;
-
-            newUnit.gameObject.transform.position = new Vector3(hit.point.x  + vectorPosition.x - formationCenterPoint[0],
+            
+            /*
+            newUnit.gameObject.transform.position = new Vector3(hit.point.x + vectorPosition.x - formationCenterPoint[0],
                                                                 vectorPosition.y,
                                                                 hit.point.z + vectorPosition.z - formationCenterPoint[1]);
-
+            */
             newUnitMoviment.Start();
 
             unitMovimentList.Add(newUnitMoviment);
         }
-        else {
+        else
+        {
             Debug.Log("Número máximo de unidades alcançadas");
         }
     }
 
-    public void RemoveUnit(GameObject unitToRemove) {
+    public void RemoveUnit(GameObject unitToRemove)
+    {
 
-        PlayerMoviment removedPlayerMoviment = unitToRemove.GetComponent<PlayerMoviment>();
+        NavMeshTest removedPlayerMoviment = unitToRemove.GetComponent<NavMeshTest>();
+
+        if (unitFormation.TotalUnits == 1)
+        {
+            unitMovimentList.Clear();
+            SceneManager.LoadScene(2);       
+            return;
+        }
         for (int i = 0; i < unitMovimentList.Count; i++)
         {
             if (unitMovimentList[i] == removedPlayerMoviment)
             {
-                unitMovimentList[unitMovimentList.Count - 1].PositionInFormation = unitMovimentList[i].PositionInFormation;
-                unitMovimentList.Insert(i, unitMovimentList[unitMovimentList.Count - 1]);
-
+                if (i != unitMovimentList.Count - 1)
+                {
+                    unitMovimentList[unitMovimentList.Count - 1].PositionInFormation = unitMovimentList[i].PositionInFormation;
+                    unitMovimentList.Insert(i, unitMovimentList[unitMovimentList.Count - 1]);
+                    unitMovimentList.RemoveAt(i + 1);
+                }
                 unitMovimentList.RemoveAt(unitMovimentList.Count - 1);
-                unitMovimentList.RemoveAt(i+1);
                 unitFormation.RemoveUnit();
                 break;
             }
