@@ -15,7 +15,7 @@ public class UnitManager : MonoBehaviour
 
     // Moviment Variables
 
-    private List<NavMeshTest> unitMovimentList = new List<NavMeshTest>(); // List of PlayerMoviment class in each unit
+    private List<NavMeshMoviment> unitMovimentList = new List<NavMeshMoviment>(); // List of PlayerMoviment class in each unit
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
@@ -36,7 +36,7 @@ public class UnitManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = unitMovimentList.Count; i < 100; i++)
             {
                 UnitSpawn();
             }
@@ -48,15 +48,12 @@ public class UnitManager : MonoBehaviour
 
     public bool UnitsNeedToMove()
     {
-
         ray = cam.ScreenPointToRay(Input.mousePosition);
-
         return Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
     }
 
     public void MoveUnits()
     {
-
         float[] formationCenterPoint = unitFormation.CenterPoint;
 
         Vector3 posHit = new Vector3(hit.point.x - formationCenterPoint[0],
@@ -67,12 +64,10 @@ public class UnitManager : MonoBehaviour
         {
             unitMovimentList[i].Move(posHit);
         }
-
     }
 
     public void UnitSpawn()
     {
-
         if (unitLimitCap > unitFormation.TotalUnits)
         {
             unitFormation.AddUnit();
@@ -83,22 +78,14 @@ public class UnitManager : MonoBehaviour
                                                 transform.position.y,
                                                 lastUnitCoordinate[1]);
 
-            GameObject newUnit = Instantiate(unitToSpawn, vectorPosition, Quaternion.identity, unitsContainer);
+            Vector3 spawnPosition = new Vector3(hit.point.x + vectorPosition.x - unitFormation.CenterPoint[0],
+                                                vectorPosition.y,
+                                                hit.point.z + vectorPosition.z - unitFormation.CenterPoint[1]);
 
-            NavMeshTest newUnitMoviment = newUnit.GetComponent<NavMeshTest>();
+            GameObject newUnit = Instantiate(unitToSpawn, spawnPosition, Quaternion.identity, unitsContainer);
 
+            NavMeshMoviment newUnitMoviment = newUnit.GetComponent<NavMeshMoviment>();
             newUnitMoviment.PositionInFormation = vectorPosition;
-            //newUnitMoviment.
-
-            var formationCenterPoint = unitFormation.CenterPoint;
-            
-            /*
-            newUnit.gameObject.transform.position = new Vector3(hit.point.x + vectorPosition.x - formationCenterPoint[0],
-                                                                vectorPosition.y,
-                                                                hit.point.z + vectorPosition.z - formationCenterPoint[1]);
-            */
-            newUnitMoviment.Start();
-
             unitMovimentList.Add(newUnitMoviment);
         }
         else
@@ -109,13 +96,11 @@ public class UnitManager : MonoBehaviour
 
     public void RemoveUnit(GameObject unitToRemove)
     {
-
-        NavMeshTest removedPlayerMoviment = unitToRemove.GetComponent<NavMeshTest>();
+        NavMeshMoviment removedPlayerMoviment = unitToRemove.GetComponent<NavMeshMoviment>();
 
         if (unitFormation.TotalUnits == 1)
         {
-            unitMovimentList.Clear();
-            SceneManager.LoadScene(2);       
+            PlayerDeath();
             return;
         }
         for (int i = 0; i < unitMovimentList.Count; i++)
@@ -133,5 +118,22 @@ public class UnitManager : MonoBehaviour
                 break;
             }
         }
+    }
+    private void PlayerDeath()
+    {
+        unitMovimentList.Clear();
+        SceneManager.LoadScene(2);
+        return;
+    }
+
+    public Vector3 returnCenterCoordOfUnits() 
+    {
+        var centerPoint = unitFormation.CenterPoint;
+
+        var posUnit = unitMovimentList.Count != 0 
+            ? unitMovimentList[0].gameObject.transform.position 
+            : Vector3.zero;
+
+        return new Vector3(posUnit.x + centerPoint[0], 0, posUnit.z + centerPoint[1]);
     }
 }
