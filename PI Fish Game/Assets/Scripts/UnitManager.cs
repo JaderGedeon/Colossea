@@ -16,6 +16,7 @@ public class UnitManager : MonoBehaviour
     // Moviment Variables
 
     private List<NavMeshMoviment> unitMovimentList = new List<NavMeshMoviment>(); // List of PlayerMoviment class in each unit
+    private bool listSplitter = false;
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
@@ -25,6 +26,7 @@ public class UnitManager : MonoBehaviour
     {
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
+        StartCoroutine(UnitsNeedToMovez());
     }
 
     void Update()
@@ -42,8 +44,18 @@ public class UnitManager : MonoBehaviour
             }
         }
 
-        if (UnitsNeedToMove())
-            MoveUnits();
+        //if (UnitsNeedToMove())
+          //  MoveUnits();
+    }
+
+    IEnumerator UnitsNeedToMovez() {
+        while (true) {
+            yield return new WaitForSeconds(0.2f);
+
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground")))
+                MoveUnits();           
+        }
     }
 
     public bool UnitsNeedToMove()
@@ -60,7 +72,22 @@ public class UnitManager : MonoBehaviour
                                     0,
                                     hit.point.z - formationCenterPoint[1]);
 
-        for (int i = 0, end = unitMovimentList.Count; i < end; i++)
+        int startIndex = 0;
+        int endIndex = unitMovimentList.Count;
+
+        
+        if (unitMovimentList.Count > 50)
+        {
+            if (listSplitter)
+                startIndex = 50;
+            else
+                endIndex = 50;
+
+            listSplitter = !listSplitter;
+        }
+        
+
+        for (int i = startIndex, end = endIndex; i < end; i++)
         {
             unitMovimentList[i].Move(posHit);
         }
