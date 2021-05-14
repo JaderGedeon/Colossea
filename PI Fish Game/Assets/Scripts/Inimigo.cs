@@ -12,6 +12,7 @@ public class Inimigo : MonoBehaviour
     private Color feedBack_Cor;
     Renderer mesh;
     public bool posso_dar_dano = true;
+    
 
     private void Start()
     {
@@ -37,7 +38,6 @@ public class Inimigo : MonoBehaviour
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
         if (other.gameObject.tag.Equals("Unit") && posso_dar_dano)
         {
-            Debug.Log(posso_dar_dano);
 
             if (jogador_cacado == null || jogador_cacado == other.gameObject)
             {

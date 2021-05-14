@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 608924273394799370}
   - component: {fileID: 608924273394799381}
   - component: {fileID: 608924273394799380}
+  - component: {fileID: -8410332438601455038}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Inimigo
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: eb250ddae42ecba4989efe421f91239b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &608924273394799371
 Rigidbody:
@@ -105,14 +106,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608924273394799383}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!114 &608924273394799370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,11 @@ MonoBehaviour:
   maskJogador:
     serializedVersion: 2
     m_Bits: 1024
+  grupo: []
+  max_patrol_range: 10
+  chegamos_destino: 1
+  agente: {fileID: 0}
+  lugar_definido: 0
 --- !u!114 &608924273394799381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 2
+  dano: 1
   cadencia: 1
   posso_dar_dano: 1
 --- !u!114 &608924273394799380
@@ -160,3 +166,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalVida: 4
+--- !u!195 &-8410332438601455038
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608924273394799383}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5000001
+  m_Speed: 15
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999905
+  m_BaseOffset: 0.49999952
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 0
