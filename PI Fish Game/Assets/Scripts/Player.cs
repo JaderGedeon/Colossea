@@ -32,8 +32,9 @@ public class Player : MonoBehaviour
     private void OnCollisionStay(Collision other)
     {
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
-        if (other.gameObject.tag.Equals("Inimigo") && posso_dar_dano)
-        {            
+        if (other.gameObject.tag.Equals("Inimigo"))
+        {
+            Debug.Log("Dei Dano");
             //pedimos para executar uma funcao que simula um certo tipo de cadencia e que depois ira direcionar para outra funcao que dara o dano
             DarDano(other);            
         }
@@ -44,9 +45,10 @@ public class Player : MonoBehaviour
     {
         //aprica o dano no objeto
         var inimigo = other.gameObject.GetComponent<Inimigo>();
-        Debug.Log("Essa eh a minha vida"+inimigo.vida.totalVida);
+        //Debug.Log("Essa eh a minha vida"+inimigo.vida.totalVida);
         if (inimigo != null)
         {
+            
             if (posso_dar_dano)
             {
                 inimigo.vida.Dano(dano);
