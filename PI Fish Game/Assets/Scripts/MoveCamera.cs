@@ -7,6 +7,13 @@ public class MoveCamera : MonoBehaviour
 
     public UnitManager manager;
     public float smoothSpeed = 1;
+    private Vector3 centerPoint = Vector3.zero;
+    public float mapRadius;
+
+    private void Start()
+    {
+        centerPoint.y = transform.position.y;
+    }
 
     void LateUpdate()
     {
@@ -16,5 +23,6 @@ public class MoveCamera : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
         transform.position = smoothedPosition;
+        Camera.main.orthographicSize = 20 + (Vector3.Distance(transform.position, centerPoint) / mapRadius);
     }     
 }

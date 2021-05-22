@@ -152,6 +152,8 @@ MonoBehaviour:
   vida: {fileID: 0}
   dano: 1
   cadencia: 1
+  feedBack_Cor: {r: 0, g: 0, b: 0, a: 0}
+  mesh: {fileID: 0}
   posso_dar_dano: 1
 --- !u!114 &608924273394799380
 MonoBehaviour:
@@ -176,7 +178,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
+  m_Speed: 13
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 180
