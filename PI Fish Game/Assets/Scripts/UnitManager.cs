@@ -11,7 +11,7 @@ public class UnitManager : MonoBehaviour
     public int unitLimitCap; // Limit of units to spawn
     public float distanceBetweenUnits; // Distance between units
 
-    private Formation unitFormation; // Class Formation
+    public Formation unitFormation; // Class Formation
 
     // Moviment Variables
 
@@ -21,6 +21,7 @@ public class UnitManager : MonoBehaviour
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
     private Ray ray; // Ray
+
 
     private void Start()
     {
