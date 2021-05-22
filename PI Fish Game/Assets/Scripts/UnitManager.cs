@@ -16,7 +16,6 @@ public class UnitManager : MonoBehaviour
     // Moviment Variables
 
     private List<NavMeshMoviment> unitMovimentList = new List<NavMeshMoviment>(); // List of PlayerMoviment class in each unit
-    private bool listSplitter = false;
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
@@ -68,28 +67,6 @@ public class UnitManager : MonoBehaviour
         {
             unit.Move(posHit);
         }
-        
-        /*
-        int startIndex = 0;
-        int endIndex = unitMovimentList.Count;
-
-        
-        if (unitMovimentList.Count > 50)
-        {
-            if (listSplitter)
-                startIndex = 50;
-            else
-                endIndex = 50;
-
-            listSplitter = !listSplitter;
-        }
-        
-
-        for (int i = startIndex, end = endIndex; i < end; i++)
-        {
-            unitMovimentList[i].Move(posHit);
-        }
-        */
     }
 
     public void UnitSpawn()

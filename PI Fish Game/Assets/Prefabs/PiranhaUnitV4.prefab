@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5005198924048829366}
   - component: {fileID: 5005198924048829364}
   - component: {fileID: 5005198924048829367}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Barra Vermelha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 5005198924491978917}
   - component: {fileID: 5005198924491978916}
   - component: {fileID: 5005198924491978919}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Barra Verde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,13 +175,13 @@ GameObject:
   - component: {fileID: 5005198924910485113}
   - component: {fileID: 5005198924910485112}
   - component: {fileID: 2896993850136707808}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5005198924910485111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 5005198925745811876}
   - component: {fileID: 5005198925745811874}
   - component: {fileID: 5005198925745811877}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,9 +365,9 @@ GameObject:
   - component: {fileID: 4738745137655510475}
   - component: {fileID: 897407993191895792}
   - component: {fileID: 2035737787213257258}
-  - component: {fileID: 3441810757213784239}
   - component: {fileID: 227830554915969727}
   - component: {fileID: 6000730113411521806}
+  - component: {fileID: -1176880940226167456}
   m_Layer: 10
   m_Name: PiranhaUnitV4
   m_TagString: Unit
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5506250368763099481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec76672934c599948b610483cb667899, type: 3}
   m_Name: 
@@ -498,28 +498,6 @@ MonoBehaviour:
   cadencia: 1
   posso_dar_dano: 1
   barra_de_vida: {fileID: 5005198924491978919}
---- !u!195 &3441810757213784239
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5506250368763099481}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.69
-  m_Speed: 20
-  m_Acceleration: 20
-  avoidancePriority: 50
-  m_AngularSpeed: 360
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2.50143
-  m_BaseOffset: 1.250715
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
 --- !u!114 &227830554915969727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,3 +524,25 @@ CapsuleCollider:
   m_Height: 3.2
   m_Direction: 2
   m_Center: {x: 0, y: 0.11, z: -0.02}
+--- !u!195 &-1176880940226167456
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5506250368763099481}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.69
+  m_Speed: 15
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 3
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 0
+  m_Height: 2.50143
+  m_BaseOffset: 1.250715
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 0

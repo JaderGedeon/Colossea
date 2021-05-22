@@ -25,13 +25,15 @@ public class NavMeshMoviment : MonoBehaviour
 
         if (CalculePath(previewPosition))
             positionToGo = previewPosition;
-     
+
+        Debug.LogWarning(previewPosition);
         agent.SetDestination(positionToGo);
     }
 
     bool CalculePath(Vector3 previewPosition)
     {
         agent.CalculatePath(previewPosition, navMeshPath);
+        Debug.Log(navMeshPath.status);
         return navMeshPath.status != NavMeshPathStatus.PathInvalid;
     }
 }
