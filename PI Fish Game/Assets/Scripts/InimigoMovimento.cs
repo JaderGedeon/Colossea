@@ -12,7 +12,7 @@ public class InimigoMovimento : MonoBehaviour
     public GameObject Jogador_Cacado;
     public LayerMask maskJogador;
     public GameObject[] grupo;
-    public float max_patrol_range = 30;
+    public float max_patrol_range = 50;
     public bool chegamos_destino = true;
     private Vector3 lugar_destino;
     public NavMeshAgent agente;
@@ -35,7 +35,7 @@ public class InimigoMovimento : MonoBehaviour
             i++;
         }
 
-        if (Jogador_Cacado!= null)
+        if (Jogador_Cacado != null)
         {
             //Perseguir(Jogador_Cacado.transform.rotation);
             //Mover(Jogador_Cacado.transform.position);
@@ -46,6 +46,7 @@ public class InimigoMovimento : MonoBehaviour
             //checamos para ver se chamos no local desejado caso não chagamos vamos devinir o local
             if (chegamos_destino)
             {
+                agente.ResetPath();
                 //já q definimos um local não precisamos definilo de novo
                 chegamos_destino = false;
                 lugar_definido = false;
@@ -53,19 +54,19 @@ public class InimigoMovimento : MonoBehaviour
                 Invoke(nameof(Patrol), 5f);
             }
             //caso o patrol já tenha rodado o lugar_definido será verdadeiro assim nos podemos nos direcionar para o local
-            else if(lugar_definido)
+            else if (lugar_definido)
             {
                 agente.SetDestination(lugar_destino);
             }
             //caso o patrol já tenha rodado o lugar_definido será verdadeiro assim podemos verificar se já chamos no local desejado
-            if (lugar_definido && (transform.position - lugar_destino).magnitude <1f)
+            if (lugar_definido && (transform.position - lugar_destino).magnitude < 1f)
                 //se chagamos no local desejado devemos dalar q ja chegamos no destino para definirmos outro local de destino
                 chegamos_destino = true;
         }
-        else if ((grupo[i].transform.position - transform.position).magnitude > 3f)
+        else if ( grupo[i] != null && grupo[i] != this.gameObject && (grupo[i].transform.position - transform.position).magnitude > 3f)
         {
             MoverParaAliado();
-        }
+        }          
         
     }
 
@@ -77,7 +78,7 @@ public class InimigoMovimento : MonoBehaviour
         //colocamos as cordenadas dentro de um Vector 3 para facilitar
         Vector3 ponto_destino = new Vector3(Proximo_x + transform.position.x, transform.position.y, Proximo_z +transform.position.z);
         //Verificamos se esse ponto no mapa pode ser atingido
-        if (Physics.Raycast(new Vector3(Proximo_x + transform.position.x, 5, Proximo_z + transform.position.z), Vector3.down, 8))
+        if (Physics.Raycast(new Vector3(Proximo_x + transform.position.x, 5, Proximo_z + transform.position.z), Vector3.down))
         {
             //se o ponto no mapa pode ser atingido setamos ele como local de destino
             lugar_destino = ponto_destino;

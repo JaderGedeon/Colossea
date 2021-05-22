@@ -9,18 +9,16 @@ public class UnitManager_Inimigo : MonoBehaviour
     private GameObject[] Grupo_de_Inimigos;
     private List<GameObject[]> Armazem_de_Grupos;
     public GameObject Inimigo;
-    private List<Vector3> formacao_inimiga = new List<Vector3>(); 
+    private List<Vector3> formacao_inimiga = new List<Vector3>();
+    public List<SpawnPoints_Manager> spawnpoints_managers;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(Instanciar_Lista_de_Inimigos), 1f, 20f);
-        formacao_inimiga.Add(new Vector3(0, 0, 0));
-        formacao_inimiga.Add(new Vector3(5, 0, 5));
-        formacao_inimiga.Add(new Vector3(5, 0, 0));
-        formacao_inimiga.Add(new Vector3(0, 0, 5));
+        //InvokeRepeating(nameof(Instanciar_Lista_de_Inimigos), 1f, 20f);
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +33,7 @@ public class UnitManager_Inimigo : MonoBehaviour
             }            
         }
     }
+
 
     public void Instanciar_Lista_de_Inimigos() 
     {
@@ -55,5 +54,5 @@ public class UnitManager_Inimigo : MonoBehaviour
         {
             Armazem_de_Grupos.Add(Grupo_de_Inimigos);
         }
-    }
+    }*/
 }
