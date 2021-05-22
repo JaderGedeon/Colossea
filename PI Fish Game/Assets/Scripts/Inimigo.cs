@@ -9,8 +9,8 @@ public class Inimigo : MonoBehaviour
     public float dano;
     GameObject jogador_cacado = null;
     public float cadencia = 1f;
-    private Color feedBack_Cor;
-    Renderer mesh;
+    public Color feedBack_Cor;
+    public Renderer mesh;
     public bool posso_dar_dano = true;
     public SpawnPointSetup spawnPoint;
     
@@ -25,7 +25,8 @@ public class Inimigo : MonoBehaviour
 
         vida.FeedBack_Dano = Mudar_Cor;
 
-        mesh = GetComponent<Renderer>();
+        if(mesh == null)
+            mesh = GetComponent<Renderer>();
 
         feedBack_Cor = mesh.material.GetColor("_Color");
 

@@ -27,7 +27,7 @@ public class UnitManager : MonoBehaviour
     {
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
-        StartCoroutine(UnitsNeedToMovez());
+        StartCoroutine(UnitsNeedToMove());
     }
 
     void Update()
@@ -44,25 +44,16 @@ public class UnitManager : MonoBehaviour
                 UnitSpawn();
             }
         }
-
-        //if (UnitsNeedToMove())
-          //  MoveUnits();
     }
 
-    IEnumerator UnitsNeedToMovez() {
+    IEnumerator UnitsNeedToMove() {
         while (true) {
             yield return new WaitForSeconds(0.2f);
 
             ray = cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground")))
-                MoveUnits();           
+            Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
+            MoveUnits();
         }
-    }
-
-    public bool UnitsNeedToMove()
-    {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
-        return Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
     }
 
     public void MoveUnits()
@@ -73,6 +64,12 @@ public class UnitManager : MonoBehaviour
                                     0,
                                     hit.point.z - formationCenterPoint[1]);
 
+        foreach (var unit in unitMovimentList)
+        {
+            unit.Move(posHit);
+        }
+        
+        /*
         int startIndex = 0;
         int endIndex = unitMovimentList.Count;
 
@@ -92,6 +89,7 @@ public class UnitManager : MonoBehaviour
         {
             unitMovimentList[i].Move(posHit);
         }
+        */
     }
 
     public void UnitSpawn()

@@ -19,6 +19,7 @@ public class InimigoMovimento : MonoBehaviour
     private int i = 0;
     private Vector3 local_Na_Formaca = Vector3.zero;
     public bool lugar_definido = false;
+    public float raio_De_Visao = 15f;
 
     public Vector3 Local_Na_Formaca { set => local_Na_Formaca = value; }
 
@@ -115,7 +116,7 @@ public class InimigoMovimento : MonoBehaviour
     public void Visao_Inimigo() 
     {
         int m = 1 << 10;
-        Jogadores_Encontrados = Physics.OverlapSphere(transform.position, 15f, m);
+        Jogadores_Encontrados = Physics.OverlapSphere(transform.position, raio_De_Visao, m);
         if (Jogadores_Encontrados.Length > 0)
         {
             if (Jogador_Cacado == null)
@@ -142,7 +143,7 @@ public class InimigoMovimento : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 10f);
+        Gizmos.DrawWireSphere(transform.position, raio_De_Visao);
     }
 
 
