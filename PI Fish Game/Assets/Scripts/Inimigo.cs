@@ -12,6 +12,7 @@ public class Inimigo : MonoBehaviour
     public Color feedBack_Cor;
     public Renderer mesh;
     public bool posso_dar_dano = true;
+    public SpawnPointSetup spawnPoint;
     
 
     private void Start()
@@ -31,6 +32,14 @@ public class Inimigo : MonoBehaviour
 
         vida.NofimDaVida = Morrer;
 
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag.Equals("Respawn"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionStay(Collision other)
@@ -89,6 +98,7 @@ public class Inimigo : MonoBehaviour
     public void Morrer()
     {
         FindObjectOfType<UnitManager>().UnitSpawn();
+        SpawnPointSetup.unidades_spawnpont--;
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject);
     }

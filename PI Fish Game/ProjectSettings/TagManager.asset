@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit
   - Inimigo
+  - Zonas
   layers:
   - Default
   - TransparentFX

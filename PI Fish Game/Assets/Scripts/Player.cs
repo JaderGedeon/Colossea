@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float cadencia = 1f;
     public bool posso_dar_dano = true;
 
+    public Barra_de_Vida barra_de_vida;
+
     private Color feedBack_Cor;
     Renderer mesh;
 
@@ -34,7 +36,6 @@ public class Player : MonoBehaviour
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
         if (other.gameObject.tag.Equals("Inimigo"))
         {
-            Debug.Log("Dei Dano");
             //pedimos para executar uma funcao que simula um certo tipo de cadencia e que depois ira direcionar para outra funcao que dara o dano
             DarDano(other);            
         }
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour
 
     public void Mudar_Cor()
     {
+        barra_de_vida.Update_Barra_de_Vida(vida.totalVida / vida.vidaCheia);
         mesh.material.color = new Color(50, feedBack_Cor.g, feedBack_Cor.b);
         Invoke(nameof(Voltar_Cor), 0.5f);
     }
