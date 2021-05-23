@@ -13,7 +13,8 @@ public class Inimigo : MonoBehaviour
     public Renderer mesh;
     public bool posso_dar_dano = true;
     public SpawnPointSetup spawnPoint;
-    
+    public bool boss = false;
+
 
     private void Start()
     {
@@ -36,9 +37,10 @@ public class Inimigo : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag.Equals("Respawn"))
+        if (collision.gameObject.tag.Equals("Respawn") && !boss)
         {
             Destroy(gameObject);
+            SpawnPointSetup.unidades_spawnpont--;
         }
     }
 

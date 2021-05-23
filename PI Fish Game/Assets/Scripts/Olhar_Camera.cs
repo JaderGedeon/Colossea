@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Olhar_Camera : MonoBehaviour
 {
-    // Update is called once per frame
     void Update()
     {
-        transform.LookAt(2 * transform.position - Camera.main.transform.position);
+        transform.LookAt(2 * transform.position - (new Vector3(-70,60,-90) + transform.position));
     }
 }

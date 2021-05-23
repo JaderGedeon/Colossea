@@ -14,12 +14,12 @@ public class SpawnPointSetup : MonoBehaviour
     private int min, max;
     private int base_min, base_max;
     public static int unidades_spawnpont;
+    private int distancia;
 
     // Start is called before the first frame update
     public void Setup()
     {
         dificuldade = Random.Range(1, 4);
-        formacao();
     }
 
     public void Atualiza_Status(float multiplicador) 
@@ -28,13 +28,16 @@ public class SpawnPointSetup : MonoBehaviour
         this.max = (int)(base_max * multiplicador);
     }
 
-    public void Iniciar(GameObject Inimigo,int min,int max) 
+    public void Iniciar(GameObject Inimigo, int min, int max, int dificuldade, int distancia)
     {
         this.min = min;
         this.max = max;
         base_min = min;
         base_max = max;
         this.Inimigo = Inimigo;
+        this.dificuldade = dificuldade;
+        this.distancia = distancia;
+        formacao();
         InvokeRepeating(nameof(SpanwPoint), Random.Range(3, 15), Random.Range(5, 8));
     }
 
@@ -42,7 +45,7 @@ public class SpawnPointSetup : MonoBehaviour
     {
         if (other.tag == "Zonas")
         {
-            Parar_Invoke();    
+            //Parar_Invoke();    
         }
     }
 
@@ -54,9 +57,8 @@ public class SpawnPointSetup : MonoBehaviour
 
     public void SpanwPoint()
     {
-        Debug.Log(unidades_spawnpont);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 8) && unidades_spawnpont<=100)
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 8) && unidades_spawnpont <= 99)
         {
             int quantos_inimigos = Random.Range(min, max);
 
@@ -77,14 +79,13 @@ public class SpawnPointSetup : MonoBehaviour
 
     public void formacao() 
     {
-        int local = 5;
         for (int i = 0; i < 100; i++)
         {
             formacao_inimiga.Add(new Vector3(0, 0, 0));
-            formacao_inimiga.Add(new Vector3(local, 0, local));
-            formacao_inimiga.Add(new Vector3(local, 0, 0));
-            formacao_inimiga.Add(new Vector3(0, 0, local));
-            local += 5;
+            formacao_inimiga.Add(new Vector3(distancia, 0, distancia));
+            formacao_inimiga.Add(new Vector3(distancia, 0, 0));
+            formacao_inimiga.Add(new Vector3(0, 0, distancia));
+            distancia += distancia;
         }
     }
 }

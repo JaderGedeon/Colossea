@@ -42,7 +42,7 @@ public class Pause_Menu : MonoBehaviour
     public void Carregar_Menu() 
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("InitialMenu");
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame() 

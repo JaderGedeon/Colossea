@@ -1536,11 +1536,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 5
+  dano: 10
   cadencia: 1
   feedBack_Cor: {r: 0, g: 0, b: 0, a: 0}
   mesh: {fileID: 819926908534395881}
   posso_dar_dano: 1
+  spawnPoint: {fileID: 0}
+  boss: 1
 --- !u!114 &-5609439798128900142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,7 +1555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20474ecd6cd492b43a02bd4fe3023214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalVida: 1
+  totalVida: 1100
+  vidaCheia: 0
 --- !u!114 &6380209751060436123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,6 +1607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6980cbc4cce2b4281fc6422672d6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: {fileID: -5609439798128900142}
 --- !u!1 &8375830192653083667
 GameObject:
   m_ObjectHideFlags: 0

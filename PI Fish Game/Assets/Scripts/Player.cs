@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public Barra_de_Vida barra_de_vida;
 
     private Color feedBack_Cor;
-    Renderer mesh;
+    public Renderer mesh;
 
     private void Start()
     {
@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
         vida.FeedBack_Dano = Mudar_Cor;
 
-        mesh = GetComponent<Renderer>();
+        if (mesh == null)
+            mesh = GetComponent<Renderer>();
 
         feedBack_Cor = mesh.material.GetColor("_Color");
 

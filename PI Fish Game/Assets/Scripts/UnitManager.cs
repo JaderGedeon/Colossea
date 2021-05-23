@@ -27,10 +27,12 @@ public class UnitManager : MonoBehaviour
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
         StartCoroutine(UnitsNeedToMove());
+        UnitSpawn();
     }
-
+    /*
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             UnitSpawn();
@@ -44,8 +46,8 @@ public class UnitManager : MonoBehaviour
             }
         }
     }
-
-    IEnumerator UnitsNeedToMove() {
+*/
+IEnumerator UnitsNeedToMove() {
         while (true) {
             yield return new WaitForSeconds(0.2f);
 
@@ -93,7 +95,6 @@ public class UnitManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Número máximo de unidades alcançadas");
         }
     }
 

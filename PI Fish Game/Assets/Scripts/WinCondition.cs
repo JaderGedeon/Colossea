@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
-    void OnDestroy()
+
+    public Vida_Geral vida;
+
+    private void Update()
     {
-        SceneManager.LoadScene(3);
-        return;
+        if (vida.totalVida < 5) {
+            SceneManager.LoadScene(3);
+            return;
+        }
     }
 }
