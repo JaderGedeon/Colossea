@@ -21,34 +21,36 @@ public class UnitManager : MonoBehaviour
     private RaycastHit hit; // Raycast
     private Ray ray; // Ray
 
-
     private void Start()
     {
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
         StartCoroutine(UnitsNeedToMove());
-        UnitSpawn();
+        UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
     }
-    /*
+
     void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UnitSpawn();
+            UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             for (int i = unitMovimentList.Count; i < 100; i++)
             {
-                UnitSpawn();
+                UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
         }
     }
-*/
-IEnumerator UnitsNeedToMove() {
-        while (true) {
+
+
+    IEnumerator UnitsNeedToMove()
+    {
+        while (true)
+        {
             yield return new WaitForSeconds(0.2f);
 
             ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -71,30 +73,19 @@ IEnumerator UnitsNeedToMove() {
         }
     }
 
-    public void UnitSpawn()
+    public void UnitSpawn(Vector3 spawnPosition)
     {
         if (unitLimitCap > unitFormation.TotalUnits)
         {
             unitFormation.AddUnit();
 
-            var lastUnitCoordinate = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
-
-            Vector3 vectorPosition = new Vector3(lastUnitCoordinate[0],
-                                                transform.position.y,
-                                                lastUnitCoordinate[1]);
-
-            Vector3 spawnPosition = new Vector3(hit.point.x + vectorPosition.x - unitFormation.CenterPoint[0],
-                                                vectorPosition.y,
-                                                hit.point.z + vectorPosition.z - unitFormation.CenterPoint[1]);
+            var formationPos = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
 
             GameObject newUnit = Instantiate(unitToSpawn, spawnPosition, Quaternion.identity, unitsContainer);
 
             NavMeshMoviment newUnitMoviment = newUnit.GetComponent<NavMeshMoviment>();
-            newUnitMoviment.PositionInFormation = vectorPosition;
+            newUnitMoviment.PositionInFormation = new Vector3(formationPos[0], 0, formationPos[1]);
             unitMovimentList.Add(newUnitMoviment);
-        }
-        else
-        {
         }
     }
 
@@ -130,14 +121,17 @@ IEnumerator UnitsNeedToMove() {
         return;
     }
 
-    public Vector3 returnCenterCoordOfUnits() 
+    public Vector3 returnCenterCoordOfUnits()
     {
-        var centerPoint = unitFormation.CenterPoint;
+        var totalX = 0f;
+        var totalZ = 0f;
 
-        var posUnit = unitMovimentList.Count != 0 
-            ? unitMovimentList[0].gameObject.transform.position 
-            : Vector3.zero;
+        foreach (var unit in unitMovimentList)
+        {
+            totalX += unit.transform.position.x;
+            totalZ += unit.transform.position.z;
+        }
 
-        return new Vector3(posUnit.x + centerPoint[0], 0, posUnit.z + centerPoint[1]);
+        return new Vector3(totalX / unitMovimentList.Count, 0, totalZ / unitMovimentList.Count);
     }
 }

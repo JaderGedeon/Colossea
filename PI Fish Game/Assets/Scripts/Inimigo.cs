@@ -99,9 +99,10 @@ public class Inimigo : MonoBehaviour
 
     public void Morrer()
     {
-        FindObjectOfType<UnitManager>().UnitSpawn();
+        var spawnPosition = gameObject.transform.position;
         SpawnPointSetup.unidades_spawnpont--;
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject);
+        FindObjectOfType<UnitManager>().UnitSpawn(spawnPosition);
     }
 }

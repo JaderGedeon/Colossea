@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-
     public UnitManager manager;
     public float smoothSpeed = 1;
     private Vector3 centerPoint = Vector3.zero;
@@ -20,9 +19,10 @@ public class MoveCamera : MonoBehaviour
         var centerCoords = manager.returnCenterCoordOfUnits();
 
         Vector3 desiredPosition = new Vector3(centerCoords.x - 15, transform.position.y, centerCoords.z - 15);
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 
         transform.position = smoothedPosition;
+
         Camera.main.orthographicSize = 20 + (Vector3.Distance(transform.position, centerPoint) / mapRadius);
     }     
 }
