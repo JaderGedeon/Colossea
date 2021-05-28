@@ -140,12 +140,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 3
+  dano: 0
   cadencia: 1
   feedBack_Cor: {r: 0, g: 0, b: 0, a: 0}
   mesh: {fileID: 0}
   posso_dar_dano: 1
   spawnPoint: {fileID: 0}
+  boss: 0
 --- !u!114 &608924273394799380
 MonoBehaviour:
   m_ObjectHideFlags: 0

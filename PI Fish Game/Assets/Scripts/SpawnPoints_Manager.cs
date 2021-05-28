@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Dificudade
+{
+    Facil,
+    Medio,
+    Dificil
+}
 public class SpawnPoints_Manager : MonoBehaviour
 {
     public List<SpawnPointSetup> spawnPointSetups;
@@ -10,6 +16,27 @@ public class SpawnPoints_Manager : MonoBehaviour
     public GameObject[] Inimigo;
     private List<Vector3> formacao_inimiga = new List<Vector3>();
     public UnitManager unitManager;
+    public static SpawnPoints_Manager instance;
+    public int unidades_spawnpoint;
+    public int capMax = 25;
+
+
+    public static void AdcionarUnidades() { instance.unidades_spawnpoint++; }
+    public static void RemoverUnidades() { instance.unidades_spawnpoint--; }
+    public static int TotalUnidades() { return instance.unidades_spawnpoint; }
+    public static int Cap() { return instance.capMax; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this) 
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -20,31 +47,31 @@ public class SpawnPoints_Manager : MonoBehaviour
 
             if (i > 0)
             {
-                spawn_points.dificuldade = 1;
+                spawn_points.dificudade = Dificudade.Facil;
             }
 
-            switch (spawn_points.dificuldade)
+            switch (spawn_points.dificudade)
             {
-                case 1:
+                case Dificudade.Facil:
                     Debug.Log("SpawPoint_Facil");
-                    spawn_points.Iniciar(Inimigo[0], 2, 5, 1, 7);
+                    spawn_points.Iniciar(Inimigo[0], 2, 5, Dificudade.Facil, 7);
                     break;
-                case 2:
+                case Dificudade.Medio:
                     Debug.Log("SpawPoint_Medio");
                     switch (Random.Range(0,1))
                     {
                         case 0:
-                            spawn_points.Iniciar(Inimigo[0], 2, 4, 2, 9);
+                            spawn_points.Iniciar(Inimigo[0], 2, 4, Dificudade.Medio, 9);
                             break;
 
                         case 1:
-                            spawn_points.Iniciar(Inimigo[1], 2, 4, 2, 9);
+                            spawn_points.Iniciar(Inimigo[1], 2, 4, Dificudade.Medio, 9);
                             break;
                     }
                     break;
-                case 3:
+                case Dificudade.Dificil:
                     Debug.Log("SpawPoint_Dificil");
-                    spawn_points.Iniciar(Inimigo[1], 3, 5, 3, 9);
+                    spawn_points.Iniciar(Inimigo[1], 3, 5, Dificudade.Dificil, 9);
                     break;
                 default:
                     break;

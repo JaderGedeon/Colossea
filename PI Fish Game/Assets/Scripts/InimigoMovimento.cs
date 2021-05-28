@@ -26,6 +26,7 @@ public class InimigoMovimento : MonoBehaviour
     private void Start()
     {
         agente = GetComponent<NavMeshAgent>();
+
     }
 
     private void FixedUpdate()
@@ -88,6 +89,7 @@ public class InimigoMovimento : MonoBehaviour
         }
 
     }
+
 
     private void MoverParaAliado() 
     {

@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 2
+  dano: 5
   cadencia: 1
   posso_dar_dano: 1
   barra_de_vida: {fileID: 3689347566197466092}

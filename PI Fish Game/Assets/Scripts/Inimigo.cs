@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Inimigo : MonoBehaviour
 {
@@ -39,8 +40,9 @@ public class Inimigo : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Respawn") && !boss)
         {
-            Destroy(gameObject);
-            SpawnPointSetup.unidades_spawnpont--;
+            Destroy(gameObject.GetComponent<NavMeshAgent>());
+            SpawnPoints_Manager.RemoverUnidades();
+            Destroy(gameObject);            
         }
     }
 
@@ -100,8 +102,9 @@ public class Inimigo : MonoBehaviour
     public void Morrer()
     {
         var spawnPosition = gameObject.transform.position;
-        SpawnPointSetup.unidades_spawnpont--;
+        SpawnPoints_Manager.RemoverUnidades();
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
+        Destroy(gameObject.GetComponent<NavMeshAgent>());
         Destroy(gameObject);
         FindObjectOfType<UnitManager>().UnitSpawn(spawnPosition);
     }

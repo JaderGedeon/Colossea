@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPointSetup : MonoBehaviour
-{ 
-    public int dificuldade;
+{
+    //public int dificuldade;
     private int quantidade_inimigo;
     private GameObject[] Grupo_de_Inimigos;
     public GameObject Inimigo;
@@ -13,32 +13,35 @@ public class SpawnPointSetup : MonoBehaviour
     public SphereCollider collider;
     private int min, max;
     private int base_min, base_max;
-    public static int unidades_spawnpont;
     private int distancia;
+    public int valor_debug;
+    
+
+    public Dificudade dificudade;
 
     // Start is called before the first frame update
     public void Setup()
     {
-        dificuldade = Random.Range(1, 4);
+        dificudade = (Dificudade)Random.Range(0, System.Enum.GetNames(typeof(Dificudade)).Length);
     }
 
-    public void Atualiza_Status(float multiplicador) 
+    public void Atualiza_Status(float multiplicador)
     {
-        this.min = (int)(base_min*multiplicador);
+        this.min = (int)(base_min * multiplicador);
         this.max = (int)(base_max * multiplicador);
     }
 
-    public void Iniciar(GameObject Inimigo, int min, int max, int dificuldade, int distancia)
+    public void Iniciar(GameObject Inimigo, int min, int max, Dificudade dificuldade, int distancia)
     {
         this.min = min;
         this.max = max;
         base_min = min;
         base_max = max;
         this.Inimigo = Inimigo;
-        this.dificuldade = dificuldade;
+        this.dificudade = dificuldade;
         this.distancia = distancia;
         formacao();
-        InvokeRepeating(nameof(SpanwPoint), Random.Range(3, 15), Random.Range(5, 8));
+        InvokeRepeating(nameof(SpanwPoint), 1, Random.Range(5, 8));
     }
 
     private void OnTriggerStay(Collider other)
@@ -49,7 +52,7 @@ public class SpawnPointSetup : MonoBehaviour
         }
     }
 
-    public void Parar_Invoke() 
+    public void Parar_Invoke()
     {
         CancelInvoke();
         InvokeRepeating(nameof(SpanwPoint), Random.Range(3, 10), Random.Range(2, 5));
@@ -58,26 +61,35 @@ public class SpawnPointSetup : MonoBehaviour
     public void SpanwPoint()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 8) && unidades_spawnpont <= 99)
+        int layerMask = 1 << 12;
+        layerMask = ~layerMask;
+        int quantos_inimigos = Random.Range(min, max);
+
+        Grupo_de_Inimigos = new GameObject[quantos_inimigos];
+
+
+        for (int i = 0; i < quantos_inimigos; i++)
         {
-            int quantos_inimigos = Random.Range(min, max);
-
-            Grupo_de_Inimigos = new GameObject[quantos_inimigos];
-
-            for (int i = 0; i < quantos_inimigos; i++)
+            if (!Physics.Raycast(transform.position + formacao_inimiga[i], Vector3.down, out hit, 8,12) 
+                && SpawnPoints_Manager.TotalUnidades() <= SpawnPoints_Manager.Cap())
             {
-                Grupo_de_Inimigos[i] = Instantiate(Inimigo, transform.position+formacao_inimiga[i],Quaternion.identity);
+                Debug.Log(SpawnPoints_Manager.TotalUnidades());
+                Grupo_de_Inimigos[i] = Instantiate(Inimigo, transform.position + formacao_inimiga[i], Quaternion.identity);
                 var inimigo_movimento = Grupo_de_Inimigos[i].GetComponent<InimigoMovimento>();
                 inimigo_movimento.grupo = Grupo_de_Inimigos;
                 inimigo_movimento.Local_Na_Formaca = formacao_inimiga[i];
-                unidades_spawnpont++;
+                SpawnPoints_Manager.AdcionarUnidades();
             }
+            else
+                break;
 
-            SpawnPoints_Manager.Armazem_de_Grupos.Add(Grupo_de_Inimigos);
         }
+
+        SpawnPoints_Manager.Armazem_de_Grupos.Add(Grupo_de_Inimigos);
+
     }
 
-    public void formacao() 
+    public void formacao()
     {
         for (int i = 0; i < 100; i++)
         {
