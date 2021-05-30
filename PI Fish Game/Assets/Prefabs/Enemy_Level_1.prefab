@@ -142,13 +142,13 @@ MonoBehaviour:
   vida: {fileID: 0}
   dano: 1
   cadencia: 1
-  feedBack_Cor: {r: 0, g: 0, b: 0, a: 0}
   mesh: {fileID: 0}
   posso_dar_dano: 1
   spawnPoint: {fileID: 0}
   boss: 0
   nivel_player: {fileID: 3713692798487881603, guid: d9f919b396810d74daec5340e3f84bff,
     type: 3}
+  damageMaterial: {fileID: 2100000, guid: 57f5afb9b2c16b844bc9caa9f87d9b23, type: 2}
 --- !u!114 &608924273394799380
 MonoBehaviour:
   m_ObjectHideFlags: 0

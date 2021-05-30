@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 public class UnitManager : MonoBehaviour
 {
 
+    public static UnitManager instance;
+
+    private void Awake()
+    {
+        if (instance)
+            return;
+        instance = this;
+    }
+
     public GameObject unitToSpawn; // Prefab of unit
     public Transform unitsContainer; // Father in hierarchy of units
     public int unitLimitCap; // Limit of units to spawn
@@ -54,7 +63,7 @@ public class UnitManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
 
             ray = cam.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
+            Physics.Raycast(ray, out hit, 350, LayerMask.GetMask("Ground"));
             MoveUnits();
         }
     }

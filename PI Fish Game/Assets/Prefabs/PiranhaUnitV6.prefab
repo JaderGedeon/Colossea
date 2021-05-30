@@ -233,6 +233,7 @@ MonoBehaviour:
   posso_dar_dano: 1
   barra_de_vida: {fileID: 3689347566197466092}
   mesh: {fileID: 7599929655887319512}
+  damageMaterial: {fileID: 2100000, guid: 57f5afb9b2c16b844bc9caa9f87d9b23, type: 2}
 --- !u!114 &-1679776720928767323
 MonoBehaviour:
   m_ObjectHideFlags: 0

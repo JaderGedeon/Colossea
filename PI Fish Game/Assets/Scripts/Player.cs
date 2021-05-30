@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
 
     public Barra_de_Vida barra_de_vida;
 
-    private Color feedBack_Cor;
+    //private Color feedBack_Cor;
     public Renderer mesh;
+    public Material damageMaterial;
+    private Material normalMaterial;
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
         if (mesh == null)
             mesh = GetComponent<Renderer>();
 
-        feedBack_Cor = mesh.material.GetColor("_Color");
+        normalMaterial = mesh.material;
 
         vida.NofimDaVida = Morrer;
     }
@@ -62,13 +64,13 @@ public class Player : MonoBehaviour
     public void Mudar_Cor()
     {
         barra_de_vida.Update_Barra_de_Vida(vida.totalVida / vida.vidaCheia);
-        mesh.material.color = new Color(50, feedBack_Cor.g, feedBack_Cor.b);
+        mesh.material = damageMaterial;
         Invoke(nameof(Voltar_Cor), 0.5f);
     }
 
     public void Voltar_Cor()
     {
-        mesh.material.color = new Color(feedBack_Cor.r, feedBack_Cor.g, feedBack_Cor.b);
+        mesh.material = normalMaterial;
     }
 
     public IEnumerator Resetar_Posso_Dar_Dano() 
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
 
     public void Morrer()
     {
-        FindObjectOfType<UnitManager>().RemoveUnit(gameObject);
+        UnitManager.instance.RemoveUnit(gameObject);
         Destroy(gameObject);
     }
 }

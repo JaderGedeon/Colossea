@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20474ecd6cd492b43a02bd4fe3023214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalVida: 1
+  totalVida: 20
   vidaCheia: 0
 --- !u!114 &3646685263509987271
 MonoBehaviour:
@@ -228,11 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 1
+  dano: 20
   cadencia: 1
   posso_dar_dano: 1
   barra_de_vida: {fileID: 3689347566197466092}
   mesh: {fileID: 7599929655887319512}
+  damageMaterial: {fileID: 2100000, guid: 57f5afb9b2c16b844bc9caa9f87d9b23, type: 2}
 --- !u!114 &-1679776720928767323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56efe90734a4d6045b9fa43dc9478e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: 0
   barra_de_vida: {fileID: 1532283747833783174}
 --- !u!1 &5855931778035341233
 GameObject:
