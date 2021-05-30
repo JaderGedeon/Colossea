@@ -168,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6107970329405985195}
   m_Layer: 0
-  m_Name: Barrio
+  m_Name: Barril
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

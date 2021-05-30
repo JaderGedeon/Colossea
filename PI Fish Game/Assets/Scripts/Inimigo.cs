@@ -15,6 +15,7 @@ public class Inimigo : MonoBehaviour
     public bool posso_dar_dano = true;
     public SpawnPointSetup spawnPoint;
     public bool boss = false;
+    public GameObject nivel_player;
 
 
     private void Start()
@@ -105,7 +106,8 @@ public class Inimigo : MonoBehaviour
         SpawnPoints_Manager.RemoverUnidades();
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject.GetComponent<NavMeshAgent>());
+        FindObjectOfType<UnitManager>().UnitSpawn(this.transform.position,nivel_player);
         Destroy(gameObject);
-        FindObjectOfType<UnitManager>().UnitSpawn(spawnPosition);
+        
     }
 }

@@ -74,13 +74,14 @@ public class InimigoMovimento : MonoBehaviour
 
     private void Patrol() 
     {
+        int layerMask = 1 << 12;
         //Randomozamos um local no mapa para o agente ir
         float Proximo_x = Random.Range(-max_patrol_range, max_patrol_range);
         float Proximo_z = Random.Range(-max_patrol_range, max_patrol_range);
         //colocamos as cordenadas dentro de um Vector 3 para facilitar
         Vector3 ponto_destino = new Vector3(Proximo_x + transform.position.x, transform.position.y, Proximo_z +transform.position.z);
         //Verificamos se esse ponto no mapa pode ser atingido
-        if (Physics.Raycast(new Vector3(Proximo_x + transform.position.x, 5, Proximo_z + transform.position.z), Vector3.down))
+        if (Physics.Raycast(new Vector3(Proximo_x + transform.position.x, 5, Proximo_z + transform.position.z), Vector3.down, 100 ,layerMask, QueryTriggerInteraction.Collide))
         {
             //se o ponto no mapa pode ser atingido setamos ele como local de destino
             lugar_destino = ponto_destino;

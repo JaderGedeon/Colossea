@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5236164646976702302}
   - component: {fileID: 3964464464655942515}
   - component: {fileID: 2730609397129677118}
+  - component: {fileID: 1750932228685206459}
   m_Layer: 0
   m_Name: Rocha1
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1750932228685206459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117612588256442544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04155853, y: 0.039711904, z: 0.039771017}
+  m_Center: {x: 0, y: 0, z: 0}

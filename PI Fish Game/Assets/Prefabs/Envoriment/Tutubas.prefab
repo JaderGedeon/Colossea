@@ -167,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653451575626987235}
+  - component: {fileID: 6067138368850233092}
   m_Layer: 0
   m_Name: Tutubas
   m_TagString: Untagged
@@ -196,6 +197,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6067138368850233092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142004635533978713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.04, y: 1.72, z: 1.71}
+  m_Center: {x: 3.64, y: 0.33, z: 0}
 --- !u!1 &2576533523132849928
 GameObject:
   m_ObjectHideFlags: 0

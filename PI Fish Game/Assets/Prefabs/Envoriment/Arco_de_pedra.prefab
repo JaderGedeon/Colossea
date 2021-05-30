@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3488872486932665446}
   - component: {fileID: 559902792308644803}
   - component: {fileID: 2315373397466328841}
+  - component: {fileID: 8496269854913428537}
   m_Layer: 0
   m_Name: Arco_de_pedra
-  m_TagString: Untagged
+  m_TagString: Ambiente
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8496269854913428537
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260730317879447260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22075999, y: 0.14509693, z: 0.17938401}
+  m_Center: {x: 0.0032420778, y: -0.03322227, z: -0.055681203}

@@ -26,7 +26,7 @@ public class UnitManager : MonoBehaviour
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
         StartCoroutine(UnitsNeedToMove());
-        UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
     }
 
     void Update()
@@ -34,14 +34,14 @@ public class UnitManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             for (int i = unitMovimentList.Count; i < 100; i++)
             {
-                UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
             }
         }
     }
@@ -73,7 +73,7 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void UnitSpawn(Vector3 spawnPosition)
+    public void UnitSpawn(Vector3 spawnPosition, GameObject novo_peixe)
     {
         if (unitLimitCap > unitFormation.TotalUnits)
         {
@@ -81,7 +81,7 @@ public class UnitManager : MonoBehaviour
 
             var formationPos = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
 
-            GameObject newUnit = Instantiate(unitToSpawn, spawnPosition, Quaternion.identity, unitsContainer);
+            GameObject newUnit = Instantiate(novo_peixe, spawnPosition, Quaternion.identity, unitsContainer);
 
             NavMeshMoviment newUnitMoviment = newUnit.GetComponent<NavMeshMoviment>();
             newUnitMoviment.PositionInFormation = new Vector3(formationPos[0], 0, formationPos[1]);
@@ -118,6 +118,7 @@ public class UnitManager : MonoBehaviour
     {
         unitMovimentList.Clear();
         SceneManager.LoadScene(2);
+        SpawnPoints_Manager.SetarCap(0);
         return;
     }
 
