@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20474ecd6cd492b43a02bd4fe3023214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalVida: 20
+  totalVida: 150
   vidaCheia: 0
 --- !u!114 &3646685263509987271
 MonoBehaviour:
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
-  dano: 20
-  cadencia: 1
+  dano: 180
+  cadencia: 0.5
   posso_dar_dano: 1
   barra_de_vida: {fileID: 3689347566197466092}
   mesh: {fileID: 0}
