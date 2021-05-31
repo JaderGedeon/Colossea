@@ -35,7 +35,7 @@ public class UnitManager : MonoBehaviour
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
         StartCoroutine(UnitsNeedToMove());
-        UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
+        UnitSpawn(new Vector3(-6.8f, transform.position.y, -37.4f), this.unitToSpawn);
     }
 
     void Update()
