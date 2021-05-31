@@ -8,7 +8,7 @@ public class Spawn_Points : ScriptableObject
 {
     public Dificudade dificudade;
     public List<GameObject> inimigos;
-    public List<GameObject> inimigos_disponiveis;
+    //public List<GameObject> inimigos_disponivei;
     public int numero_max, numero_min;
     public int intervalo_max, intervalo_min;
 
@@ -148,20 +148,24 @@ public class Spawn_Points : ScriptableObject
     //Na zona_5 um spawn point de nivel medio ira spawnar um tipo de peixes Lv 3
     //Na zona_5 um spawn point de nivel dificil ira spawnar um tipo de peixes Lv 4
     public List<GameObject> Atualizar_Status_Zona_5(List<GameObject> inimigos_disponiveis) {
-        Debug.Log("Piranhas Rosas Ativas");
-        switch (this.dificudade)
+        Debug.Log(dificudade);
+        switch (dificudade)
         {
             case Dificudade.Facil:
+                Debug.Log("Piranhas Multiplas");
                 inimigos_disponiveis.Add(inimigos[(int)Nivel_Piranhas.Nivel_2]);
                 inimigos_disponiveis.Add(inimigos[(int)Nivel_Piranhas.Nivel_3]);
                 return inimigos_disponiveis;
             case Dificudade.Medio:
+                Debug.Log("Piranha Demonio");
                 inimigos_disponiveis.Add(inimigos[(int)Nivel_Piranhas.Nivel_3]);
                 return inimigos_disponiveis;
             case Dificudade.Dificil:
+                Debug.Log("Piranha Osso");
                 inimigos_disponiveis.Add(inimigos[(int)Nivel_Piranhas.Nivel_4]);
                 return inimigos_disponiveis;
             default:
+                Debug.Log("Caiu no default");
                 return inimigos_disponiveis;
         }
     }

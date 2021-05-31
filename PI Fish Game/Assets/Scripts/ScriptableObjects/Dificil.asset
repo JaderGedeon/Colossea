@@ -15,11 +15,9 @@ MonoBehaviour:
   dificudade: 2
   inimigos:
   - {fileID: 608924273394799383, guid: 67f7906736ca574419b7f02053528daf, type: 3}
-  - {fileID: 608924273394799383, guid: 18422fec88fb93c45afbbee6dd1198b3, type: 3}
+  - {fileID: 4150760898648197818, guid: 7dcc6f44a50e55c48adcde2a6471708b, type: 3}
   - {fileID: 608924273394799383, guid: b8eb65043dc831c49b42716faf7b319f, type: 3}
   - {fileID: 608924273394799383, guid: bcc0885f670e36748a67b9908a81083b, type: 3}
-  inimigos_disponiveis:
-  - {fileID: 608924273394799383, guid: 18422fec88fb93c45afbbee6dd1198b3, type: 3}
   numero_max: 8
   numero_min: 7
   intervalo_max: 0

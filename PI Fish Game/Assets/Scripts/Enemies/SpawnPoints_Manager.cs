@@ -56,7 +56,7 @@ public class SpawnPoints_Manager : MonoBehaviour
             {
                 spawn_points.Iniciar(Spawn_Points_Array[0]);
             }
-            spawn_points.Iniciar(Spawn_Points_Array[Random.Range(0, 2)]);
+            spawn_points.Iniciar(Spawn_Points_Array[Random.Range(0, 3)]);
             i--;
         }
         StartCoroutine(Atualiza_Dificudade());

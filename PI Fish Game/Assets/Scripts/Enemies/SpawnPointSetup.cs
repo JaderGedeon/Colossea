@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnPointSetup : MonoBehaviour
 {
-    private Spawn_Points spawn_points;
+    public Spawn_Points spawn_points;
     //public int dificuldade;
     //private int quantidade_inimigo;
     private GameObject[] Grupo_de_Inimigos;
@@ -37,7 +37,7 @@ public class SpawnPointSetup : MonoBehaviour
         this.spawn_points = spawn_;
         this.min = spawn_.numero_min;
         this.max = spawn_.numero_max;
-        inimigos_disponiveis = spawn_.inimigos_disponiveis;
+        inimigos_disponiveis = spawn_.Voltando_Area_Normal(inimigos_disponiveis);
         formacao();
         InvokeRepeating(nameof(SpanwPoint), 1, Random.Range(5, 8));
     }
@@ -47,6 +47,7 @@ public class SpawnPointSetup : MonoBehaviour
         if (other.tag == "Zonas")
         {
             CancelInvoke();
+            Debug.Log("Nivel desse Spawn"+spawn_points.dificudade);
             inimigos_disponiveis = spawn_points.Detecta_Area(other.name,inimigos_disponiveis);
             InvokeRepeating(nameof(SpanwPoint), 1, Random.Range(5, 8));
         }

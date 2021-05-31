@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 608924273394799375}
   - component: {fileID: 608924273394799374}
-  - component: {fileID: 608924273394799369}
+  - component: {fileID: 4649091779028644584}
   - component: {fileID: 608924273394799371}
   - component: {fileID: 608924273394799370}
   - component: {fileID: 608924273394799381}
@@ -46,8 +46,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608924273394799383}
   m_Mesh: {fileID: 2219126513513300098, guid: 85812fbbe8434dc4c96513cec1e0ea1c, type: 3}
---- !u!23 &608924273394799369
-MeshRenderer:
+--- !u!137 &4649091779028644584
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -60,13 +60,13 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fd13789e461d3c84db7cc2853d13974b, type: 2}
   - {fileID: 2100000, guid: b2f35fa385eb19245a393a06d5fee128, type: 2}
-  - {fileID: 2100000, guid: 1622a3e57616bd646aaf43cbf0827d03, type: 2}
+  - {fileID: 2100000, guid: 14ce2897695de9d46b9c6a4d60848632, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,6 +87,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 2219126513513300098, guid: 85812fbbe8434dc4c96513cec1e0ea1c, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: -0.000000059604645, y: 0.20625895, z: -0.079562485}
+    m_Extent: {x: 0.783617, y: 1.044456, z: 1.584218}
+  m_DirtyAABB: 0
 --- !u!54 &608924273394799371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -142,12 +154,13 @@ MonoBehaviour:
   vida: {fileID: 0}
   dano: 1
   cadencia: 1
-  mesh: {fileID: 0}
+  mesh: {fileID: 4649091779028644584}
   posso_dar_dano: 1
   spawnPoint: {fileID: 0}
   boss: 0
-  nivel_player: {fileID: 3713692798487881603, guid: d9f919b396810d74daec5340e3f84bff,
+  nivel_player: {fileID: 3713692798487881603, guid: e5066f025b51dfc4ab2df2a63b211df1,
     type: 3}
+  barra_de_vida: {fileID: 0}
   damageMaterial: {fileID: 2100000, guid: 57f5afb9b2c16b844bc9caa9f87d9b23, type: 2}
 --- !u!114 &608924273394799380
 MonoBehaviour:
