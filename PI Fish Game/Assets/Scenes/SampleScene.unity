@@ -100,7 +100,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 59ee8a8b33a20c6418f522a8a5062b68,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -27480,7 +27480,7 @@ TerrainCollider:
   m_GameObject: {fileID: 182753629631554640}
   m_Material: {fileID: 0}
   m_Enabled: 0
-  m_TerrainData: {fileID: 15600000, guid: 0fef78f0e05cdca4eb4661b85ace7691, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: b8d79a5ac79040e41a8230bacb6697c6, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &182753629631554642
 Terrain:
@@ -27491,7 +27491,7 @@ Terrain:
   m_GameObject: {fileID: 182753629631554640}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 0fef78f0e05cdca4eb4661b85ace7691, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: b8d79a5ac79040e41a8230bacb6697c6, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -49340,6 +49340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504956846309309
 BoxCollider:
@@ -49366,6 +49367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504957021198434
 BoxCollider:
@@ -49392,6 +49394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!114 &5876504957577760845
 MonoBehaviour:
@@ -49448,6 +49451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504957929964905
 BoxCollider:
@@ -49474,6 +49478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504958150588132
 BoxCollider:
@@ -49500,6 +49505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504958287178228
 BoxCollider:
@@ -49526,6 +49532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!65 &5876504958704315421
 BoxCollider:
@@ -49552,6 +49559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31a17291023c74b889d55af36d1b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_points: {fileID: 0}
   dificudade: 0
 --- !u!4 &5889970907702195674
 Transform:
