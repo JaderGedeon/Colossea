@@ -29702,6 +29702,7 @@ MonoBehaviour:
   unitLimitCap: 100
   distanceBetweenUnits: 5
   unitFormation: {fileID: 0}
+  compass: {fileID: 4460178870498524119}
 --- !u!4 &182753630491280711
 Transform:
   m_ObjectHideFlags: 0

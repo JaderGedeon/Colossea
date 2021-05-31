@@ -20,8 +20,11 @@ public class MoveCamera : MonoBehaviour
         Vector3 desiredPosition = new Vector3(centerCoords.x - 15, transform.position.y, centerCoords.z - 15);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 
-        transform.position = smoothedPosition;
+        if (smoothedPosition.x != null)
+        {
+            transform.position = smoothedPosition;
 
-        Camera.main.orthographicSize = 20 + (Vector3.Distance(transform.position, centerPoint) / mapRadius);
+            Camera.main.orthographicSize = 20 + (Vector3.Distance(transform.position, centerPoint) / mapRadius);
+        }
     }     
 }

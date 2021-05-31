@@ -30,6 +30,9 @@ public class UnitManager : MonoBehaviour
     private RaycastHit hit; // Raycast
     private Ray ray; // Ray
 
+    public GameObject compass;
+
+
     private void Start()
     {
         unitFormation = new Formation(distance: distanceBetweenUnits);
@@ -125,8 +128,10 @@ public class UnitManager : MonoBehaviour
     }
     private void PlayerDeath()
     {
-        unitMovimentList.Clear();
+        cam.GetComponent<MoveCamera>().enabled = false;
+        compass.GetComponent<Compass>().enabled = false;
         SceneManager.LoadScene(2);
+        unitMovimentList.Clear();
         SpawnPoints_Manager.SetarCap(0);
         return;
     }
