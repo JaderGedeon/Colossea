@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +33,11 @@ public class GameManager : MonoBehaviour
     {
         _JogoPronto = true;
         JogoProntoEvent.Invoke();
+    }
+
+    internal void SetActive(bool v)
+    {
+        throw new NotImplementedException();
     }
 
     public static void AddJogoProntoListener(UnityAction _listener) 

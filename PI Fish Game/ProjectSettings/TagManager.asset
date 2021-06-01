@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Unit
   - Inimigo
+  - Zonas
+  - Ambiente
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - Ground
   - PostProcessing
   - Player
-  - 
-  - 
-  - 
+  - Particle
+  - Objects
+  - Boss
   - 
   - 
   - 

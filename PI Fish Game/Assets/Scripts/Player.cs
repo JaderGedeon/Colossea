@@ -9,8 +9,12 @@ public class Player : MonoBehaviour
     public float cadencia = 1f;
     public bool posso_dar_dano = true;
 
-    private Color feedBack_Cor;
-    Renderer mesh;
+    public Barra_de_Vida barra_de_vida;
+
+    //private Color feedBack_Cor;
+    public Renderer mesh;
+    public Material damageMaterial;
+    private Material normalMaterial;
 
     private void Start()
     {
@@ -22,19 +26,19 @@ public class Player : MonoBehaviour
 
         vida.FeedBack_Dano = Mudar_Cor;
 
-        mesh = GetComponent<Renderer>();
+        if (mesh == null)
+            mesh = GetComponent<Renderer>();
 
-        feedBack_Cor = mesh.material.GetColor("_Color");
+        normalMaterial = mesh.material;
 
         vida.NofimDaVida = Morrer;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         //Caso encontre um collider e o nome dele seja Player executamos oque esta dentro do If
-        if (other.gameObject.tag.Equals("Inimigo") && other.gameObject.GetComponent<Inimigo>().posso_dar_dano)
+        if (other.gameObject.tag.Equals("Inimigo"))
         {
-            StartCoroutine(other.gameObject.GetComponent<Inimigo>().Resetar_Posso_Dar_Dano());
             //pedimos para executar uma funcao que simula um certo tipo de cadencia e que depois ira direcionar para outra funcao que dara o dano
             DarDano(other);            
         }
@@ -45,33 +49,40 @@ public class Player : MonoBehaviour
     {
         //aprica o dano no objeto
         var inimigo = other.gameObject.GetComponent<Inimigo>();
-        Debug.Log("Essa eh a minha vida"+inimigo.vida.totalVida);
+        //Debug.Log("Essa eh a minha vida"+inimigo.vida.totalVida);
         if (inimigo != null)
         {
-            vida.Dano(inimigo.dano);
+            
+            if (posso_dar_dano)
+            {
+                inimigo.vida.Dano(dano);
+                StartCoroutine(Resetar_Posso_Dar_Dano());
+            }            
         }
     }
 
     public void Mudar_Cor()
     {
-        mesh.material.color = new Color(50, feedBack_Cor.g, feedBack_Cor.b);
-        Invoke(nameof(Voltar_Cor), 1);
+        barra_de_vida.Update_Barra_de_Vida(vida.totalVida / vida.vidaCheia);
+        mesh.material = damageMaterial;
+        Invoke(nameof(Voltar_Cor), 0.5f);
     }
 
     public void Voltar_Cor()
     {
-        mesh.material.color = new Color(feedBack_Cor.r, feedBack_Cor.g, feedBack_Cor.b);
+        mesh.material = normalMaterial;
     }
 
     public IEnumerator Resetar_Posso_Dar_Dano() 
     {
         posso_dar_dano = false;
-        yield return cadencia;
+        yield return new WaitForSeconds(cadencia);
         posso_dar_dano = true;
     }
 
     public void Morrer()
     {
+        UnitManager.instance.RemoveUnit(gameObject);
         Destroy(gameObject);
     }
 }

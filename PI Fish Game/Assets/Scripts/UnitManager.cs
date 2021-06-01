@@ -1,102 +1,152 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
+
+    public static UnitManager instance;
+
+    private void Awake()
+    {
+        if (instance)
+            return;
+        instance = this;
+    }
 
     public GameObject unitToSpawn; // Prefab of unit
     public Transform unitsContainer; // Father in hierarchy of units
     public int unitLimitCap; // Limit of units to spawn
     public float distanceBetweenUnits; // Distance between units
 
-    private Formation unitFormation; // Class Formation
+    public Formation unitFormation; // Class Formation
 
     // Moviment Variables
 
-    private List<PlayerMoviment> unitMovimentList = new List<PlayerMoviment>(); // List of PlayerMoviment class in each unit
+    private List<NavMeshMoviment> unitMovimentList = new List<NavMeshMoviment>(); // List of PlayerMoviment class in each unit
 
     private Camera cam; // Main Camera
     private RaycastHit hit; // Raycast
     private Ray ray; // Ray
 
+    public GameObject compass;
+
+
     private void Start()
     {
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
+        StartCoroutine(UnitsNeedToMove());
+        UnitSpawn(new Vector3(-6.8f, transform.position.y, -37.4f), this.unitToSpawn);
     }
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UnitSpawn();
+            UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = unitMovimentList.Count; i < 100; i++)
             {
-                UnitSpawn();
+                UnitSpawn(new Vector3(hit.point.x, transform.position.y, hit.point.z), this.unitToSpawn);
             }
         }
+    }
 
-        if (UnitsNeedToMove())
+
+    IEnumerator UnitsNeedToMove()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray, out hit, 350, LayerMask.GetMask("Ground"));
             MoveUnits();
+        }
     }
 
-    public bool UnitsNeedToMove() {
-
-        ray = cam.ScreenPointToRay(Input.mousePosition);
-
-        return Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Ground"));
-    }
-
-    public void MoveUnits() {
-
+    public void MoveUnits()
+    {
         float[] formationCenterPoint = unitFormation.CenterPoint;
 
         Vector3 posHit = new Vector3(hit.point.x - formationCenterPoint[0],
                                     0,
                                     hit.point.z - formationCenterPoint[1]);
 
-        for (int i = 0, end = unitMovimentList.Count; i < end; i++)
+        foreach (var unit in unitMovimentList)
         {
-            unitMovimentList[i].Move(posHit);
+            unit.Move(posHit);
         }
- 
     }
 
-    public void UnitSpawn() {
-
-        if (unitLimitCap > unitFormation.GetTotalUnits)
+    public void UnitSpawn(Vector3 spawnPosition, GameObject novo_peixe)
+    {
+        if (unitLimitCap > unitFormation.TotalUnits)
         {
             unitFormation.AddUnit();
 
-            var lastUnitCoordinate = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
+            var formationPos = unitFormation.GetLastUnitCoordinate.GetXandZPosition;
 
-            Vector3 vectorPosition = new Vector3(lastUnitCoordinate[0],
-                                                transform.position.y,
-                                                lastUnitCoordinate[1]);
+            GameObject newUnit = Instantiate(novo_peixe, spawnPosition, Quaternion.identity, unitsContainer);
 
-            GameObject newUnit = Instantiate(unitToSpawn, vectorPosition, Quaternion.identity, unitsContainer);
-
-            PlayerMoviment newUnitMoviment = newUnit.GetComponent<PlayerMoviment>();
-
-            newUnitMoviment.PositionInFormation = vectorPosition;
-
-            var formationCenterPoint = unitFormation.CenterPoint;
-
-            newUnit.gameObject.transform.position = new Vector3(hit.point.x  + vectorPosition.x - formationCenterPoint[0],
-                                                                vectorPosition.y,
-                                                                hit.point.z + vectorPosition.z - formationCenterPoint[1]);
-
-            newUnitMoviment.Start();
-
+            NavMeshMoviment newUnitMoviment = newUnit.GetComponent<NavMeshMoviment>();
+            newUnitMoviment.PositionInFormation = new Vector3(formationPos[0], 0, formationPos[1]);
             unitMovimentList.Add(newUnitMoviment);
         }
-        else {
-            Debug.Log("Número máximo de unidades alcançadas");
+    }
+
+    public void RemoveUnit(GameObject unitToRemove)
+    {
+        NavMeshMoviment removedPlayerMoviment = unitToRemove.GetComponent<NavMeshMoviment>();
+
+        if (unitFormation.TotalUnits == 1)
+        {
+            PlayerDeath();
+            return;
         }
+        for (int i = 0; i < unitMovimentList.Count; i++)
+        {
+            if (unitMovimentList[i] == removedPlayerMoviment)
+            {
+                if (i != unitMovimentList.Count - 1)
+                {
+                    unitMovimentList[unitMovimentList.Count - 1].PositionInFormation = unitMovimentList[i].PositionInFormation;
+                    unitMovimentList.Insert(i, unitMovimentList[unitMovimentList.Count - 1]);
+                    unitMovimentList.RemoveAt(i + 1);
+                }
+                unitMovimentList.RemoveAt(unitMovimentList.Count - 1);
+                unitFormation.RemoveUnit();
+                break;
+            }
+        }
+    }
+    private void PlayerDeath()
+    {
+        cam.GetComponent<MoveCamera>().enabled = false;
+        compass.GetComponent<Compass>().enabled = false;
+        SceneManager.LoadScene(2);
+        unitMovimentList.Clear();
+        SpawnPoints_Manager.SetarCap(0);
+        return;
+    }
+
+    public Vector3 returnCenterCoordOfUnits()
+    {
+        var totalX = 0f;
+        var totalZ = 0f;
+
+        foreach (var unit in unitMovimentList)
+        {
+            totalX += unit.transform.position.x;
+            totalZ += unit.transform.position.z;
+        }
+
+        return new Vector3(totalX / unitMovimentList.Count, 0, totalZ / unitMovimentList.Count);
     }
 }
