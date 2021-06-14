@@ -41,6 +41,8 @@ public class UnitManager : MonoBehaviour
         UnitSpawn(new Vector3(-6.8f, transform.position.y, -37.4f), this.unitToSpawn);
     }
 
+    /*
+
     void Update()
     {
 
@@ -57,6 +59,8 @@ public class UnitManager : MonoBehaviour
             }
         }
     }
+
+    */
 
 
     IEnumerator UnitsNeedToMove()

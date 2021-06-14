@@ -34,7 +34,7 @@ public class Pause_Menu : MonoBehaviour
         Jogo_Pausado = false;
     }
 
-    void Pause() 
+    public void Pause() 
     {
         pauseMenuUI.SetActive(true);
         GUI.SetActive(false);

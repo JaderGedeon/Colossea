@@ -78,10 +78,14 @@ public class SpawnPointSetup : MonoBehaviour
         {
             Vector3 vector = transform.position + formacao_inimiga[i];
             vector.y = 50;
+            //Physics.BoxCast(transform.position + formacao_inimiga[i], new Vector3(3,3,3), Vector3.down, out hit, Mathf.Infinity, layerMask_objeto, QueryTriggerInteraction.Collide)
             if (!Physics.Raycast(vector, Vector3.down, out hit, Mathf.Infinity, layerMask_objeto, QueryTriggerInteraction.Collide) && SpawnPoints_Manager.TotalUnidades() <= SpawnPoints_Manager.Cap() && !Physics.Raycast(vector, Vector3.down, out hit, Mathf.Infinity, layerMask_inimigo))
             {
                 //Debug.Log(SpawnPoints_Manager.TotalUnidades());
-                Grupo_de_Inimigos[i] = Instantiate(inimigos_disponiveis[Random.Range(0, inimigos_disponiveis.Count)], transform.position + formacao_inimiga[i], Quaternion.identity);
+                var randomizado = Random.Range(0, inimigos_disponiveis.Count);
+
+                Grupo_de_Inimigos[i] = Instantiate(inimigos_disponiveis[randomizado], transform.position + formacao_inimiga[i], Quaternion.identity);
+                Grupo_de_Inimigos[i].GetComponent<Inimigo>().deathParticle = SpawnPoints_Manager.instance.Particulas[randomizado];
                 var inimigo_movimento = Grupo_de_Inimigos[i].GetComponent<InimigoMovimento>();
                 inimigo_movimento.grupo = Grupo_de_Inimigos;
                 inimigo_movimento.Local_Na_Formaca = formacao_inimiga[i];

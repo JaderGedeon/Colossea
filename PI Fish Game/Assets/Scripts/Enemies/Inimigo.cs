@@ -22,6 +22,8 @@ public class Inimigo : MonoBehaviour
     private Material normalMaterial;
     public Material damageMaterial;
 
+    public GameObject deathParticle;
+
 
     private void Start()
     {
@@ -114,6 +116,8 @@ public class Inimigo : MonoBehaviour
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         UnitManager.instance.UnitSpawn(this.transform.position,nivel_player);
+        Debug.LogError(deathParticle);
+        Instantiate(deathParticle, transform.position, Quaternion.Euler(Quaternion.identity.x, Quaternion.identity.y, Random.Range(0.0f, 360.0f)));
         Destroy(gameObject);
         
     }

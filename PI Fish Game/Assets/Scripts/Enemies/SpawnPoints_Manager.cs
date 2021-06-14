@@ -27,6 +27,8 @@ public class SpawnPoints_Manager : MonoBehaviour
     public int capMax = 25;
     public Spawn_Points[] Spawn_Points_Array;
 
+    public GameObject[] Particulas;
+
     public static void AdcionarUnidades() { instance.unidades_spawnpoint++; }
     public static void RemoverUnidades() { instance.unidades_spawnpoint--; }
     public static int TotalUnidades() { return instance.unidades_spawnpoint; }
