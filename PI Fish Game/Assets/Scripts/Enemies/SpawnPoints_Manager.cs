@@ -29,6 +29,9 @@ public class SpawnPoints_Manager : MonoBehaviour
 
     public GameObject[] Particulas;
 
+    [Header("Novas Alterações")]
+    [SerializeField] private GameObject enemyConteiner;
+
     public static void AdcionarUnidades() { instance.unidades_spawnpoint++; }
     public static void RemoverUnidades() { instance.unidades_spawnpoint--; }
     public static int TotalUnidades() { return instance.unidades_spawnpoint; }
@@ -53,6 +56,7 @@ public class SpawnPoints_Manager : MonoBehaviour
         foreach (SpawnPointSetup spawn_points in spawnPointSetups)
         {
             spawn_points.Setup();
+            spawn_points.enemyContaner = enemyConteiner;
 
             if (i > 0)
             {

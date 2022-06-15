@@ -18,13 +18,13 @@ public class Menu : MonoBehaviour
 
     public void PlayGame()
     {
-        if (!tutorial_visto)
+       /* if (!tutorial_visto)
         {
             tutorial_visto = true;
             SceneManager.LoadScene("Tutorial");            
         }
-        else
-            SceneManager.LoadScene(1);
+        else*/
+        SceneManager.LoadScene(1);
         
     }
 
@@ -40,6 +40,8 @@ public class Menu : MonoBehaviour
 
     public void Tutorial()
     {
+        SceneManager.LoadScene("Tutorial");
+        /*
         foreach (GameObject escrito in escitas)
         {
             escrito.SetActive(false);
@@ -48,7 +50,7 @@ public class Menu : MonoBehaviour
         imagem.GetComponent<RawImage>().texture = sprites[proxima_imagem];
         botao_proximo.SetActive(true);
         voltar.SetActive(true);
-        tutorial.SetActive(false);
+        tutorial.SetActive(false);*/
     }
 
     public void ProximaImagem()
