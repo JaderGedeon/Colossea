@@ -16,11 +16,14 @@ public class Inimigo : MonoBehaviour
     public SpawnPointSetup spawnPoint;
     public bool boss = false;
     public GameObject nivel_player;
+    public Nivel_Piranhas piranha;
 
     public Barra_de_Vida barra_de_vida;
 
     private Material normalMaterial;
     public Material damageMaterial;
+
+    public GameObject deathParticle;
 
 
     private void Start()
@@ -114,6 +117,18 @@ public class Inimigo : MonoBehaviour
         //GetComponent<Instanciar_Novo_Jogador>().Invocar_Jogador();
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         UnitManager.instance.UnitSpawn(this.transform.position,nivel_player);
+
+        /*switch (piranha)
+        {
+            case Nivel_Piranhas.Nivel_4:
+                
+                break;
+            default:
+                FindObjectOfType<SoundManagerScript>().PlaySound("Converte");
+                break;
+        }*/
+        FindObjectOfType<SoundManagerScript>().PlaySound("ConverteOsso");
+        Instantiate(deathParticle, transform.position, Quaternion.Euler(Quaternion.identity.x, Quaternion.identity.y, Random.Range(0.0f, 360.0f)));
         Destroy(gameObject);
         
     }

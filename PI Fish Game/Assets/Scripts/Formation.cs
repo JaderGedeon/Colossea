@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Formation : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Formation : MonoBehaviour
 
     private int numDiag = 1;
     private int[] numInSideOfSquare = { 1, 1 };
+
+    public UnityEvent refreshUI = new UnityEvent();
 
     public Formation(float distance)
     {
@@ -61,6 +64,7 @@ public class Formation : MonoBehaviour
             }
         }
         totalUnits++;
+        refreshUI.Invoke();
     }
 
     public void RemoveUnit() {
@@ -85,6 +89,7 @@ public class Formation : MonoBehaviour
         }
 
         totalUnits--;
+        refreshUI.Invoke();
     }
 
     public float[] CenterPoint => centerPoint;

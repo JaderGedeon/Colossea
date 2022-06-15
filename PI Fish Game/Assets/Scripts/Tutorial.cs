@@ -3,34 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] Object gameScene;
     public GameObject imagem;
+    RawImage imageTexture;
+    VideoPlayer clip;
+    [SerializeField] private GameObject video;
     public Texture[] sprites;
+    public VideoClip[] videos;
     private int proxima_imagem = 0;
 
     
     private void Start()
     {
         Debug.Log("Inicializei");
-        imagem.GetComponent<RawImage>().texture = sprites[proxima_imagem];
+        imageTexture = imagem.GetComponent<RawImage>();
+        clip = video.GetComponent<VideoPlayer>();
+        imageTexture.texture = sprites[proxima_imagem];
+        clip.clip = videos[proxima_imagem];
     }
 
     public void ProximaImagem()
     {
         proxima_imagem += 1;
         if (proxima_imagem > sprites.Length - 1)
-        {
             proxima_imagem = 0;
-        }
-        imagem.GetComponent<RawImage>().texture = sprites[proxima_imagem];
+        imageTexture.texture = sprites[proxima_imagem];
+        clip.clip = videos[proxima_imagem];
+        //Debug.Log(videos[proxima_imagem].name);
     }
 
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void GoBackMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
 

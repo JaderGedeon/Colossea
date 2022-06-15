@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Teste : MonoBehaviour
 {
+    public LayerMask mask;
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
-        int layerMask = 1 << 12;
-        if (!Physics.Raycast(this.transform.position, Vector3.down, out hit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Collide))
+        int layerMask = 1 << 1;
+        if (!Physics.Raycast(this.transform.position, Vector3.down, out hit, Mathf.Infinity, mask, QueryTriggerInteraction.Collide))
         {
             Debug.Log("Posso Spanar aqui");
         }

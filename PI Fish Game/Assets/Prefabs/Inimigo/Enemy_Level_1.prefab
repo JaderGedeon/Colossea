@@ -107,8 +107,10 @@ MonoBehaviour:
   boss: 0
   nivel_player: {fileID: 3713692798487881603, guid: e5066f025b51dfc4ab2df2a63b211df1,
     type: 3}
+  piranha: 0
   barra_de_vida: {fileID: 0}
   damageMaterial: {fileID: 2100000, guid: 57f5afb9b2c16b844bc9caa9f87d9b23, type: 2}
+  deathParticle: {fileID: 0}
 --- !u!114 &608924273394799380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 608924273394799383}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.3
   m_Speed: 13
   m_Acceleration: 20
   avoidancePriority: 50
@@ -144,7 +146,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 1
 --- !u!136 &7847660055271474513
 CapsuleCollider:
   m_ObjectHideFlags: 0

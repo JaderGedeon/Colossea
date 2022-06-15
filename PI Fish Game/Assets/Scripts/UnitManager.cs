@@ -38,8 +38,14 @@ public class UnitManager : MonoBehaviour
         unitFormation = new Formation(distance: distanceBetweenUnits);
         cam = Camera.main;
         StartCoroutine(UnitsNeedToMove());
-        UnitSpawn(new Vector3(-6.8f, transform.position.y, -37.4f), this.unitToSpawn);
+        for (int i = 0; i < 4; i++)
+        {
+            UnitSpawn(new Vector3(-6.8f, transform.position.y, -37.4f), this.unitToSpawn);
+        }
+        
     }
+
+    /*
 
     void Update()
     {
@@ -57,6 +63,8 @@ public class UnitManager : MonoBehaviour
             }
         }
     }
+
+    */
 
 
     IEnumerator UnitsNeedToMove()
