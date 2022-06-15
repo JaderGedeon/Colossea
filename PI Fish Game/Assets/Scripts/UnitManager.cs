@@ -71,7 +71,7 @@ public class UnitManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
 
             ray = cam.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out hit, 350, LayerMask.GetMask("Ground"));

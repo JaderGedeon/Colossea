@@ -12,11 +12,11 @@ public class Teste : MonoBehaviour
         int layerMask = 1 << 1;
         if (!Physics.Raycast(this.transform.position, Vector3.down, out hit, Mathf.Infinity, mask, QueryTriggerInteraction.Collide))
         {
-            Debug.Log("Posso Spanar aqui");
+            //Debug.Log("Posso Spanar aqui");
         }
         else
         {
-            Debug.Log("Não Posso Spanar aqui");
+           //Debug.Log("Não Posso Spanar aqui");
         }
     }
 }
