@@ -1746,8 +1746,10 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   boss: 1
   nivel_player: {fileID: 0}
+  piranha: 0
   barra_de_vida: {fileID: 8259899674841639782}
   damageMaterial: {fileID: 2100000, guid: 693853abe626bff488aaa5bbd27f0bb3, type: 2}
+  deathParticle: {fileID: 0}
 --- !u!114 &-5609439798128900142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,7 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20474ecd6cd492b43a02bd4fe3023214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalVida: 10000
+  totalVida: 7500
   vidaCheia: 0
 --- !u!114 &6380209751060436123
 MonoBehaviour:
