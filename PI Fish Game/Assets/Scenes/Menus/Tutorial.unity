@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999946, b: 0.99999946, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -175,7 +175,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
-  m_AspectRatio: 2
+  m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 1}
+  m_Color: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -459,8 +459,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.6999817, y: -87.43}
-  m_SizeDelta: {x: 64.85483, y: 41.410576}
+  m_AnchoredPosition: {x: -3, y: -126.9}
+  m_SizeDelta: {x: -244.8789, y: -37.76171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445547152
 MonoBehaviour:
@@ -667,8 +667,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.6999784, y: 13}
-  m_SizeDelta: {x: 183.3783, y: 55.569237}
+  m_AnchoredPosition: {x: -6, y: -3.1}
+  m_SizeDelta: {x: -150.85321, y: -23.8107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808070512
 MonoBehaviour:
@@ -691,13 +691,13 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: bfd92350002e141408bf036c0485a092, type: 3}
-    m_FontSize: 50
+    m_FontSize: 48
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 4
     m_MaxSize: 88
     m_Alignment: 4
-    m_AlignByGeometry: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -1035,6 +1035,84 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1480542427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480542428}
+  - component: {fileID: 1480542430}
+  - component: {fileID: 1480542429}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1480542428
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480542427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1520395972}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 427}
+  m_SizeDelta: {x: 1053.748, y: 55.91205}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1480542429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480542427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: af22c68c5934ee242a1469744abd34a5, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: convert fishes to your shoal.
+--- !u!222 &1480542430
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480542427}
+  m_CullTransparentMesh: 0
 --- !u!1 &1497672697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,7 +1149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 612, y: 0.0014648}
+  m_AnchoredPosition: {x: 799.54, y: -0.000000043772}
   m_SizeDelta: {x: 319.0749, y: 1079.9739}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497672699
@@ -1177,6 +1255,7 @@ GameObject:
   - component: {fileID: 1520304305}
   - component: {fileID: 1520304304}
   - component: {fileID: 1520304307}
+  - component: {fileID: 1520304308}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1261,6 +1340,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002860c350a6d8a43b34650a457827ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1520304308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520304303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1520395971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1403,7 @@ RectTransform:
   - {fileID: 1011671403}
   - {fileID: 1497672698}
   - {fileID: 1197561076}
+  - {fileID: 1480542428}
   m_Father: {fileID: 1626980261}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1315,19 +1426,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameScene: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
   imagem: {fileID: 440989572}
+  tutorialUIText: {fileID: 1480542429}
   video: {fileID: 114812169}
   sprites:
-  - {fileID: 2800000, guid: 663012e5233929a4fb82a364c48dde97, type: 3}
-  - {fileID: 2800000, guid: a2f99d8f42e0c494b97f8d5fb7ba446a, type: 3}
-  - {fileID: 2800000, guid: 66e5069f1358cf143b5a9542c5f04114, type: 3}
-  - {fileID: 2800000, guid: 118328a686f76c246b36c4b7a2a6f980, type: 3}
-  - {fileID: 2800000, guid: dd3307b34565a054e9ab89d32186774c, type: 3}
-  - {fileID: 2800000, guid: 3a564a4f1c2676f4c99b14a843ddf70a, type: 3}
+  - {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
   videos:
-  - {fileID: 32900000, guid: 92b6218fbdfc77b48a94a7af807f68e6, type: 3}
-  - {fileID: 32900000, guid: 2559dceb325be6c4b9d2ff3c536d7763, type: 3}
-  - {fileID: 32900000, guid: 66e60abc207b4d44a81454f227e811bb, type: 3}
-  - {fileID: 32900000, guid: f02d6a911f83d7b42af3cd15941196d7, type: 3}
+  - {fileID: 32900000, guid: d7ab8bbd5130554479fea0674e0d52fc, type: 3}
+  - {fileID: 32900000, guid: 5a8effb11b7320f408b84c9a2fec0072, type: 3}
+  - {fileID: 32900000, guid: 3e0b9497dcc019c478a32697626a7d69, type: 3}
+  tutorialTexts:
+  - convert fishes to your shoal.
+  - discover new fishes.
+  - defeat the colossus.
 --- !u!1 &1626980257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1491,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1463,7 +1575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 20}
+  m_AnchoredPosition: {x: -6, y: -3.1}
   m_SizeDelta: {x: 318.74728, y: 89.163055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1654658721
@@ -1593,7 +1705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -87.63}
+  m_AnchoredPosition: {x: -3, y: -126.9}
   m_SizeDelta: {x: 200.22385, y: 75.00441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942403818
@@ -1720,10 +1832,10 @@ RectTransform:
   m_Father: {fileID: 1626980261}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965506833
 MonoBehaviour:
@@ -1738,7 +1850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 1}
+  m_Color: {r: 0.32156864, g: 0.8156863, b: 0.8666667, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1793,8 +1905,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74.9897, y: 40.1}
-  m_SizeDelta: {x: -149.9794, y: -961.31055}
+  m_AnchoredPosition: {x: -17, y: 40.1}
+  m_SizeDelta: {x: -43.129852, y: -728.2567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2029905942
 MonoBehaviour:
@@ -1817,13 +1929,13 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_FontSize: 175
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 4
-    m_AlignByGeometry: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -1871,8 +1983,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 57}
-  m_SizeDelta: {x: 720, y: 480}
+  m_AnchoredPosition: {x: 0, y: 85.2}
+  m_SizeDelta: {x: 1052.7031, y: 592.1455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047781473
 MonoBehaviour:

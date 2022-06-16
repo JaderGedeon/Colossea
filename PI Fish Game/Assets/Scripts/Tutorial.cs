@@ -11,9 +11,11 @@ public class Tutorial : MonoBehaviour
     public GameObject imagem;
     RawImage imageTexture;
     VideoPlayer clip;
+    public Text tutorialUIText;
     [SerializeField] private GameObject video;
     public Texture[] sprites;
     public VideoClip[] videos;
+    public string[] tutorialTexts;
     private int proxima_imagem = 0;
 
     
@@ -33,6 +35,7 @@ public class Tutorial : MonoBehaviour
             proxima_imagem = 0;
         imageTexture.texture = sprites[proxima_imagem];
         clip.clip = videos[proxima_imagem];
+        tutorialUIText.text = tutorialTexts[proxima_imagem];
         //Debug.Log(videos[proxima_imagem].name);
     }
 
