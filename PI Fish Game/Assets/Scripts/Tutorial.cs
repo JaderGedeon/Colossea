@@ -14,18 +14,17 @@ public class Tutorial : MonoBehaviour
     public Text tutorialUIText;
     [SerializeField] private GameObject video;
     public Texture[] sprites;
-    public VideoClip[] videos;
+    public string[] videos;
     public string[] tutorialTexts;
     private int proxima_imagem = 0;
 
     
     private void Start()
     {
-        Debug.Log("Inicializei");
         imageTexture = imagem.GetComponent<RawImage>();
         clip = video.GetComponent<VideoPlayer>();
         imageTexture.texture = sprites[proxima_imagem];
-        clip.clip = videos[proxima_imagem];
+        clip.url = videos[proxima_imagem];
     }
 
     public void ProximaImagem()
@@ -34,7 +33,7 @@ public class Tutorial : MonoBehaviour
         if (proxima_imagem > sprites.Length - 1)
             proxima_imagem = 0;
         imageTexture.texture = sprites[proxima_imagem];
-        clip.clip = videos[proxima_imagem];
+        clip.url = videos[proxima_imagem];
         tutorialUIText.text = tutorialTexts[proxima_imagem];
         //Debug.Log(videos[proxima_imagem].name);
     }
